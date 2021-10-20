@@ -1,27 +1,27 @@
-import { Component, Prop, Host, h } from '@stencil/core';
+import { Component, Prop, Host, h } from "@stencil/core";
 
-const baseClass = 'my-button';
+const baseClass = "my-ui-button";
 
 @Component({
-  tag: 'my-button',
-  styleUrl: 'button.css',
+  tag: "my-ui-button",
+  styleUrl: "button.scss",
   shadow: false,
 })
-export class Button {
+export class MyUiButton {
   /** Indicates if the button is disabled */
   @Prop() disabled: boolean;
 
   /** Variant of the button */
-  @Prop() kind: 'default' | 'primary' | 'secondary' = 'default';
+  @Prop() kind: "default" | "primary" | "secondary" = "default";
 
   /** Label text of the button */
   @Prop() label: string;
 
   /** Size of the button */
-  @Prop() size: 's' | 'm' | 'l' = 'm';
+  @Prop() size: "s" | "m" | "l" = "m";
 
   /** Type attribute of the button */
-  @Prop() type: 'button' | 'submit' | 'reset' = 'button';
+  @Prop() type: "button" | "submit" | "reset" = "button";
 
   render() {
     return (
@@ -29,8 +29,8 @@ export class Button {
         class={{
           [baseClass]: true,
           [`${baseClass}--disabled`]: this.disabled,
-          [`${baseClass}--${this.kind}`]: ['default', 'primary', 'secondary'].includes(this.kind),
-          [`${baseClass}--size-${this.size}`]: ['s', 'm', 'l'].includes(this.size),
+          [`${baseClass}--${this.kind}`]: ["default", "primary", "secondary"].includes(this.kind),
+          [`${baseClass}--size-${this.size}`]: ["s", "m", "l"].includes(this.size),
         }}
       >
         <button class={`${baseClass}__button`} disabled={this.disabled} aria-label={this.label}>

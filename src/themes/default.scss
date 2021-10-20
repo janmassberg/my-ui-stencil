@@ -1,0 +1,23 @@
+:root {
+  // Text
+  --my-ui-font-family: Arial, Helvetica, sans-serif;
+
+  // Button
+  --my-ui-button-bg-color: transparent;
+  --my-ui-button-border-color: #1e90ff;
+  --my-ui-button-border-width: 2px;
+  --my-ui-button-border-radius: 4px;
+  --my-ui-button-font-size: 1rem;
+  --my-ui-button-font-weight: normal;
+  --my-ui-button-text-color: #1e90ff;
+  --my-ui-button-padding-vertical: 1em;
+  --my-ui-button-padding-horizontal: 2em;
+  --my-ui-button-transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  --my-ui-button-bg-color-hover: #1e90ff;
+  --my-ui-button-border-color-hover: var(--my-ui-button-border-color);
+  --my-ui-button-text-color-hover: #ffffff;
+  --my-ui-button-bg-color-active: #56abff;
+  --my-ui-button-border-color-active: #56abff;
+  --my-ui-button-border-color-focus: #006cd5;
+  --my-ui-button-disabled-opacity: 0.75;
+}

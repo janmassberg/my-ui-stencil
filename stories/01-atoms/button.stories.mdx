@@ -1,0 +1,62 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import { html } from "lit-html";
+import { ifDefined } from "lit-html/directives/if-defined";
+
+export const template = (args = {}) => {
+  const { kind, label, disabled, _children = "" } = args;
+  return html`<my-ui-button kind=${ifDefined(kind)} label=${ifDefined(label)} ?disabled=${disabled}>${html([_children])}</my-ui-button>`;
+};
+
+<Meta
+  title="Atoms/Button"
+  component={`my-ui-button`}
+  argTypes={{
+    disabled: {
+      control: "boolean",
+    },
+    label: {
+      control: "text",
+    },
+    _children: {
+      defaultValue: "",
+      control: "text",
+    },
+  }}
+/>
+
+# Button
+
+The basic button atom.
+
+### Default
+
+<Canvas>
+  <Story
+    name="Button"
+    args={{
+      label: "Label Text",
+      _children: "Button Label",
+    }}
+  >
+    {template.bind({})}
+  </Story>
+</Canvas>
+
+### Disabled
+
+<Canvas>
+  <Story
+    name="Disabled"
+    args={{
+      label: "Label Text",
+      disabled: true,
+      _children: "Button Label",
+    }}
+  >
+    {template.bind({})}
+  </Story>
+</Canvas>
+
+## Interface
+
+<ArgsTable />
