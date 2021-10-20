@@ -12,8 +12,14 @@
   "unpkg": "dist/my-ui/my-ui.esm.js",
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "README.md",
+    "LICENSE"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janmassberg/my-ui-stencil.git"
+  },
   "scripts": {
     "start": "concurrently npm:stencil npm:storybook",
     "stencil": "stencil build --dev --watch",
