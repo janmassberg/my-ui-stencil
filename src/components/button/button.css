@@ -1,0 +1,12 @@
+my-button {
+  display: inline-block;
+}
+
+my-button button {
+  padding: 10px;
+  appearance: none;
+  border: 2px solid dodgerblue;
+  background: transparent;
+  color: black;
+  display: flex;
+}
