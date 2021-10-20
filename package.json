@@ -1,5 +1,5 @@
 {
-  "name": "my-ui",
+  "name": "@jmassberg/my-ui-stencil",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -15,20 +15,44 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
+    "start": "concurrently npm:stencil npm:storybook",
+    "stencil": "stencil build --dev --watch",
+    "storybook": "start-storybook --quiet -s ./resources -p 6006",
+    "build-stencil": "stencil build --docs",
+    "build-storybook": "build-storybook",
+    "generate": "stencil generate",
+    "eslint": "eslint src/**/*{.ts,.tsx}",
+    "eslint-fix": "eslint src/**/*{.ts,.tsx} --fix",
+    "prettier": "prettier --check \"./{src/**/*{.scss,.ts,.tsx},stories/**/*{.mdx,.js,.ts},*.js,*.ts,.react/package.json}\"",
+    "prettier-fix": "prettier --write \"./{src/**/*{.scss,.ts,.tsx},stories/**/*{.mdx,.js,.ts},*.js,*.ts,.react/package.json}\"",
+    "lint": "npm run prettier && npm run eslint",
+    "lint-fix": "npm run prettier-fix && npm run eslint-fix",
+    "tslint": "tsc --noEmit",
     "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "test-watch": "stencil test --spec --e2e --watchAll",
+    "test-update": "jest -u",
+    "test-report": "jest --json --outputFile ./jest.report.json --coverage"
   },
   "dependencies": {
     "@stencil/core": "^2.7.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/web-components": "^6.3.12",
     "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "babel-loader": "^8.2.2",
+    "concurrently": "^6.3.0",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
-    "puppeteer": "^10.0.0"
+    "lit-html": "^2.0.1",
+    "prettier": "^2.4.1",
+    "puppeteer": "^10.0.0",
+    "typescript": "^4.4.4"
   },
   "license": "MIT"
 }
