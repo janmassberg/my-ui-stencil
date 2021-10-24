@@ -10,7 +10,10 @@ module.exports = {
   extends: ["eslint:recommended", "plugin:@stencil/recommended"],
   rules: {
     "@stencil/decorators-style": 0,
-    "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "^h$" }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { varsIgnorePattern: "^h$" },
+    ],
     "no-extra-boolean-cast": 0,
     "no-unused-vars": 0,
     "react/jsx-no-bind": 0,
