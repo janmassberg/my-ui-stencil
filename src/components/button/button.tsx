@@ -7,7 +7,7 @@ const baseClass = "my-ui-button";
   styleUrl: "button.scss",
   shadow: false,
 })
-export class MyUiButton {
+export class UiButton {
   /** Indicates if the button is disabled */
   @Prop() disabled: boolean;
 
