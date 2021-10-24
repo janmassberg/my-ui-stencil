@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`my-button renders 1`] = `
-<my-button class="hydrated my-button my-button--default my-button--size-m" label="Label">
+exports[`my-ui-button should have variant classNames and render button with aria-label attribute 1`] = `
+<my-ui-button class="hydrated my-ui-button my-ui-button--primary my-ui-button--size-m" kind="primary" label="Label">
   <!---->
-  <button aria-label="Label" class="my-button__button">
+  <button aria-label="Label" class="my-ui-button__button">
     Content
   </button>
-</my-button>
+</my-ui-button>
 `;
