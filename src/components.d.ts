@@ -30,7 +30,9 @@ export namespace Components {
   }
 }
 declare global {
-  interface HTMLMyUiButtonElement extends Components.MyUiButton, HTMLStencilElement {}
+  interface HTMLMyUiButtonElement
+    extends Components.MyUiButton,
+      HTMLStencilElement {}
   var HTMLMyUiButtonElement: {
     prototype: HTMLMyUiButtonElement;
     new (): HTMLMyUiButtonElement;
@@ -70,7 +72,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
-      "my-ui-button": LocalJSX.MyUiButton & JSXBase.HTMLAttributes<HTMLMyUiButtonElement>;
+      "my-ui-button": LocalJSX.MyUiButton &
+        JSXBase.HTMLAttributes<HTMLMyUiButtonElement>;
     }
   }
 }

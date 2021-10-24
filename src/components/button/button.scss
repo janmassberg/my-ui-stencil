@@ -1,45 +1,74 @@
 my-ui-button {
   display: inline-block;
 
-  &.my-ui-button--disabled {
-    pointer-events: none;
+  &.my-ui-button {
+    button {
+      appearance: none;
+      display: flex;
+      cursor: pointer;
+      color: var(--my-ui-button-text-color);
+      border: var(--my-ui-button-border-width) solid
+        var(--my-ui-button-border-color);
+      border-radius: var(--my-ui-button-border-radius, 0);
+      background: var(--my-ui-button-bg-color) none;
+      font-family: var(--my-ui-font-family, inherit);
+      font-weight: var(--my-ui-button-font-weight, inherit);
+      font-size: var(--my-ui-button-font-size, 1rem);
+      padding: var(--my-ui-button-padding-vertical, 0.5em)
+        var(--my-ui-button-padding-horizontal, 1em);
+
+      &:not(:disabled) {
+        transition: var(--my-ui-button-transition, none);
+      }
+
+      &:hover {
+        background-color: var(--my-ui-button-bg-color-hover);
+        border-color: var(--my-ui-button-border-color-hover);
+        color: var(--my-ui-button-text-color-hover);
+      }
+
+      &:active {
+        background-color: var(--my-ui-button-bg-color-active);
+        border-color: var(--my-ui-button-border-color-active);
+      }
+
+      &:focus {
+        border-color: var(--my-ui-button-border-color-focus);
+      }
+
+      &:disabled {
+        pointer-events: none;
+        opacity: var(--my-ui-button-disabled-opacity, 1);
+      }
+    }
   }
 
-  button {
-    appearance: none;
-    display: flex;
-    cursor: pointer;
-    color: var(--my-ui-button-text-color);
-    border: var(--my-ui-button-border-width) solid var(--my-ui-button-border-color);
-    border-radius: var(--my-ui-button-border-radius, 0);
-    background: var(--my-ui-button-bg-color) none;
-    font-family: var(--my-ui-font-family, inherit);
-    font-weight: var(--my-ui-button-font-weight, inherit);
-    font-size: var(--my-ui-button-font-size, 1rem);
-    padding: var(--my-ui-button-padding-vertical, 0.5em) var(--my-ui-button-padding-horizontal, 1em);
+  &.my-ui-button--primary {
+    button {
+      background-color: var(--my-ui-button-border-color);
+      border-color: var(--my-ui-button-border-color);
+      color: white;
 
-    &:not(:disabled) {
-      transition: var(--my-ui-button-transition, none);
+      &:hover {
+        background-color: var(--my-ui-button-bg-color-hover);
+        border-color: var(--my-ui-button-border-color-hover);
+        color: var(--my-ui-button-text-color-hover);
+      }
+
+      &:active {
+        background-color: var(--my-ui-button-bg-color-active);
+        border-color: var(--my-ui-button-border-color-active);
+      }
     }
+  }
 
-    &:hover {
-      background-color: var(--my-ui-button-bg-color-hover);
-      border-color: var(--my-ui-button-border-color-hover);
-      color: var(--my-ui-button-text-color-hover);
-    }
+  &.my-ui-button--disabled {
+    pointer-events: none;
 
-    &:active {
-      background-color: var(--my-ui-button-bg-color-active);
-      border-color: var(--my-ui-button-border-color-active);
-    }
-
-    &:focus {
-      border-color: var(--my-ui-button-border-color-focus);
-    }
-
-    &:disabled {
-      pointer-events: none;
-      opacity: var(--my-ui-button-disabled-opacity, 1);
+    button {
+      background-color: transparent;
+      border-color: var(--my-ui-button-disabled-color);
+      color: var(--my-ui-button-disabled-color);
     }
   }
 }

@@ -29,11 +29,21 @@ export class MyUiButton {
         class={{
           [baseClass]: true,
           [`${baseClass}--disabled`]: this.disabled,
-          [`${baseClass}--${this.kind}`]: ["default", "primary", "secondary"].includes(this.kind),
-          [`${baseClass}--size-${this.size}`]: ["s", "m", "l"].includes(this.size),
+          [`${baseClass}--${this.kind}`]: [
+            "default",
+            "primary",
+            "secondary",
+          ].includes(this.kind),
+          [`${baseClass}--size-${this.size}`]: ["s", "m", "l"].includes(
+            this.size,
+          ),
         }}
       >
-        <button class={`${baseClass}__button`} disabled={this.disabled} aria-label={this.label}>
+        <button
+          class={`${baseClass}__button`}
+          disabled={this.disabled}
+          aria-label={this.label}
+        >
           <slot />
         </button>
       </Host>
