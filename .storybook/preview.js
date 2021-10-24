@@ -1,4 +1,6 @@
 import { defineCustomElements } from '../dist/custom-elements';
+import '../dist/my-ui/my-ui.css';
+
 defineCustomElements();
 
 export const parameters = {
