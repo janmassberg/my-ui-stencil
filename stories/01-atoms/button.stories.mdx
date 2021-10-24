@@ -4,7 +4,12 @@ import { ifDefined } from "lit-html/directives/if-defined";
 
 export const template = (args = {}) => {
   const { kind, label, disabled, _children = "" } = args;
-  return html`<my-ui-button kind=${ifDefined(kind)} label=${ifDefined(label)} ?disabled=${disabled}>${html([_children])}</my-ui-button>`;
+  return html`<my-ui-button
+    kind=${ifDefined(kind)}
+    label=${ifDefined(label)}
+    ?disabled=${disabled}
+    >${html([_children])}</my-ui-button
+  >`;
 };
 
 <Meta
@@ -14,7 +19,14 @@ export const template = (args = {}) => {
     disabled: {
       control: "boolean",
     },
+    kind: {
+      control: {
+        type: "radio",
+        options: ["default", "primary", "secondary"],
+      },
+    },
     label: {
+      defaultValue: "Label Text",
       control: "text",
     },
     _children: {
@@ -32,9 +44,22 @@ The basic button atom.
 
 <Canvas>
   <Story
-    name="Button"
+    name="Default"
     args={{
-      label: "Label Text",
+      _children: "Button Label",
+    }}
+  >
+    {template.bind({})}
+  </Story>
+</Canvas>
+
+### Primary
+
+<Canvas>
+  <Story
+    name="Primary"
+    args={{
+      kind: "primary",
       _children: "Button Label",
     }}
   >
@@ -48,7 +73,6 @@ The basic button atom.
   <Story
     name="Disabled"
     args={{
-      label: "Label Text",
       disabled: true,
       _children: "Button Label",
     }}
