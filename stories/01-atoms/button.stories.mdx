@@ -4,17 +4,17 @@ import { ifDefined } from "lit-html/directives/if-defined";
 
 export const template = (args = {}) => {
   const { kind, label, disabled, _children = "" } = args;
-  return html`<my-ui-button
+  return html`<ui-button
     kind=${ifDefined(kind)}
     label=${ifDefined(label)}
     ?disabled=${disabled}
-    >${html([_children])}</my-ui-button
+    >${html([_children])}</ui-button
   >`;
 };
 
 <Meta
   title="Atoms/Button"
-  component={`my-ui-button`}
+  component={`ui-button`}
   argTypes={{
     disabled: {
       control: "boolean",
