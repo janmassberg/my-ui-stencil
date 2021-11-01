@@ -1,0 +1,100 @@
+/**
+* @prop --ui-menu-bg-color-hover: background color when hovered
+* @prop --ui-menu-text-color: default text and icon color
+* @prop --ui-menu-text-color-active: text and icon color when the item is active
+* @prop --ui-menu-text-color-focus: text and icon color when the item has focus
+* @prop --ui-menu-text-color-selected: text and icon color when the item is selected
+* @prop --ui-menu-text-color-disabled: text and icon color when the item is disabled
+* @prop --ui-menu-outline-color: outline color
+* @prop --ui-menu-outline-color-focus: outline color when the item has focus
+* @prop --ui-menu-border-width: outline thickness
+* @prop --ui-menu-item-border-radius: border radius of the menu item
+*/
+ui-menu-item {
+  flex: 0 0 auto;
+  display: block;
+  position: relative;
+  font-size: var(--ui-menu-font-size, inherit);
+  line-height: var(--ui-menu-line-height, normal);
+  font-weight: var(--ui-menu-font-weight, normal);
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  user-select: none;
+
+  .ui-menu--vertical &,
+  .ui-menu-item__submenu & {
+    flex: 1 0 auto;
+  }
+
+  &[selected] > .ui-menu-item__item {
+    color: var(--ui-menu-text-color-selected);
+  }
+
+  &:focus {
+    outline-color: var(--ui-menu-outline-color);
+  }
+
+  &:focus > .ui-menu-item__item {
+    color: var(--ui-menu-text-color-focus);
+  }
+
+  &:active > .ui-menu-item__item {
+    color: var(--ui-menu-text-color-active);
+  }
+
+  .ui-menu-item__label {
+    display: inline-block;
+    flex: 1 0 auto;
+  }
+
+  .ui-menu-item__item {
+    box-sizing: border-box;
+    border-radius: var(--ui-menu-item-border-radius, 0);
+    position: relative;
+    padding: var(--ui-button-padding-vertical, 0.5em)
+      var(--ui-button-padding-horizontal, 1em);
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: var(--ui-menu-bg-color-hover);
+      color: var(--ui-menu-text-color-hover);
+    }
+
+    .ui-menu--vertical &,
+    .ui-menu-item__submenu & {
+      flex: 1 0 auto;
+      justify-content: stretch;
+    }
+  }
+
+  .ui-menu-item__submenu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 240px;
+    background-color: var(--ui-menu-bg-color-secondary);
+
+    &--expanded {
+      display: block;
+    }
+
+    &--vertical {
+      left: 100%;
+      top: 0;
+    }
+  }
+}
+
+.ui-menu-item--icon-only {
+  .ui-menu-item__item {
+    padding: 0 14px;
+  }
+
+  .ui-menu-item__label {
+    display: none;
+  }
+}

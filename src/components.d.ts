@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { IconName } from "./components/icon/types";
+import { IMenuItem } from "./components/menu/types";
 export namespace Components {
   interface UiButton {
     /**
@@ -39,6 +40,56 @@ export namespace Components {
      */
     src?: string;
   }
+  interface UiMenuItem {
+    /**
+     * Flag that indicates if the menu item is disabled
+     */
+    disabled: boolean;
+    /**
+     * If the item has nested items
+     */
+    expanded: boolean;
+    /**
+     * Name of the icon that should be rendered instead of or before the label
+     */
+    icon?: string;
+    /**
+     * Flag that indicates that the menu-item only renders an icon without label
+     */
+    iconOnly?: boolean;
+    /**
+     * Data provider for the menu child elements
+     */
+    items: IMenuItem[] | null;
+    /**
+     * Label text use as aria-label attribute and slot fallback
+     */
+    label?: string;
+    /**
+     * The level in a nested menu
+     */
+    level: number;
+    /**
+     * Name that must be unique in the menu scope identifies the menu-item
+     */
+    name: string;
+    /**
+     * The parent item element in a nested menu
+     */
+    parent: HTMLUiMenuItemElement | null;
+    /**
+     * The `role` attribute of the element
+     */
+    role: "menuitem" | "tab";
+    /**
+     * Flag that indicates if the menu item is currently selected or not
+     */
+    selected: boolean;
+    /**
+     * Name of the icon that should be rendered after the label
+     */
+    trailingIcon?: string;
+  }
 }
 declare global {
   interface HTMLUiButtonElement
@@ -53,9 +104,17 @@ declare global {
     prototype: HTMLUiIconElement;
     new (): HTMLUiIconElement;
   };
+  interface HTMLUiMenuItemElement
+    extends Components.UiMenuItem,
+      HTMLStencilElement {}
+  var HTMLUiMenuItemElement: {
+    prototype: HTMLUiMenuItemElement;
+    new (): HTMLUiMenuItemElement;
+  };
   interface HTMLElementTagNameMap {
     "ui-button": HTMLUiButtonElement;
     "ui-icon": HTMLUiIconElement;
+    "ui-menu-item": HTMLUiMenuItemElement;
   }
 }
 declare namespace LocalJSX {
@@ -91,9 +150,60 @@ declare namespace LocalJSX {
      */
     src?: string;
   }
+  interface UiMenuItem {
+    /**
+     * Flag that indicates if the menu item is disabled
+     */
+    disabled?: boolean;
+    /**
+     * If the item has nested items
+     */
+    expanded?: boolean;
+    /**
+     * Name of the icon that should be rendered instead of or before the label
+     */
+    icon?: string;
+    /**
+     * Flag that indicates that the menu-item only renders an icon without label
+     */
+    iconOnly?: boolean;
+    /**
+     * Data provider for the menu child elements
+     */
+    items?: IMenuItem[] | null;
+    /**
+     * Label text use as aria-label attribute and slot fallback
+     */
+    label?: string;
+    /**
+     * The level in a nested menu
+     */
+    level?: number;
+    /**
+     * Name that must be unique in the menu scope identifies the menu-item
+     */
+    name?: string;
+    /**
+     * The parent item element in a nested menu
+     */
+    parent?: HTMLUiMenuItemElement | null;
+    /**
+     * The `role` attribute of the element
+     */
+    role?: "menuitem" | "tab";
+    /**
+     * Flag that indicates if the menu item is currently selected or not
+     */
+    selected?: boolean;
+    /**
+     * Name of the icon that should be rendered after the label
+     */
+    trailingIcon?: string;
+  }
   interface IntrinsicElements {
     "ui-button": UiButton;
     "ui-icon": UiIcon;
+    "ui-menu-item": UiMenuItem;
   }
 }
 export { LocalJSX as JSX };
@@ -103,6 +213,8 @@ declare module "@stencil/core" {
       "ui-button": LocalJSX.UiButton &
         JSXBase.HTMLAttributes<HTMLUiButtonElement>;
       "ui-icon": LocalJSX.UiIcon & JSXBase.HTMLAttributes<HTMLUiIconElement>;
+      "ui-menu-item": LocalJSX.UiMenuItem &
+        JSXBase.HTMLAttributes<HTMLUiMenuItemElement>;
     }
   }
 }
