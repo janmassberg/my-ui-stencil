@@ -19,6 +19,7 @@ import {
   findFirstSelectedMenuItem,
   getMenuItemPath,
   getMenuItemHasChildren,
+  getIsFirstChildMenuItem,
 } from "./utils";
 
 const baseClass = "ui-menu";
@@ -80,6 +81,42 @@ export class Menu implements ComponentInterface {
       : findMenus(this.rootElement, this.name);
   };
 
+  /** Set the focus to the next menu-item on the same level */
+  private focusNextItem = (
+    current: HTMLUiMenuItemElement,
+    dir: number,
+  ): void => {
+    const scope = current.parent || this.rootElement || this.host;
+    const items = findMenuItems(scope, `[level="${current.level}"]`);
+    let index = items.indexOf(current) + dir;
+    if (index >= items.length) {
+      index = 0;
+    } else if (index < 0) {
+      index = items.length - 1;
+    }
+    if (items[index] !== undefined) {
+      items[index].focus();
+    }
+  };
+
+  /** Set the focus to the next menu-item on parent or child level */
+  private focusNextLevel = (
+    current: HTMLUiMenuItemElement,
+    dir: number,
+  ): void => {
+    if (dir > 0) {
+      const items = findMenuItems(current, `[level="${current.level + 1}"]`);
+      if (items.length > 0) {
+        setTimeout(() => {
+          items[0].focus();
+        });
+      }
+    } else if (dir < 0 && current.parent !== null) {
+      current.parent.focus();
+      current.parent.expanded = false;
+    }
+  };
+
   /** Internally select or toggle a menu-item */
   private selectItem = (item: HTMLUiMenuItemElement): void => {
     if (!this.toggle && item === this.selectedItem) return;
@@ -129,6 +166,70 @@ export class Menu implements ComponentInterface {
     this.selectItem(item);
   };
 
+  /** Keyboard event handler */
+  private handleKeyDown = (event: KeyboardEvent) => {
+    const item = findMenuItemInEvent(event);
+    if (item === null) return;
+    const hasChildren = getMenuItemHasChildren(item);
+    switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        if (hasChildren) {
+          item.expanded = !item.expanded;
+        } else {
+          this.selectItem(item);
+        }
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        if (!this.vertical && item.level === 0) {
+          this.focusNextItem(item, -1);
+        } else {
+          if (item.expanded) {
+            item.expanded = false;
+          }
+          this.focusNextLevel(item, -1);
+        }
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        if (this.vertical || item.level > 0) {
+          if (item.level === 1 && getIsFirstChildMenuItem(item)) {
+            this.focusNextLevel(item, -1);
+          } else {
+            this.focusNextItem(item, -1);
+          }
+        } else {
+          if (item.expanded) {
+            item.expanded = false;
+          }
+          this.focusNextLevel(item, -1);
+        }
+        break;
+      case "ArrowRight":
+        event.preventDefault();
+        if (!this.vertical && item.level === 0) {
+          this.focusNextItem(item, 1);
+        } else if (hasChildren) {
+          item.expanded = true;
+          this.focusNextLevel(item, 1);
+        }
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        if (this.vertical || item.level > 0) {
+          this.focusNextItem(item, 1);
+        } else if (hasChildren) {
+          item.expanded = true;
+          this.focusNextLevel(item, 1);
+        }
+        break;
+      default:
+        break;
+    }
+  };
+
   componentDidLoad() {
     if (typeof this.current === "string") {
       this.setCurrent();
@@ -164,6 +265,7 @@ export class Menu implements ComponentInterface {
           [`${baseClass}--vertical`]: vertical === true,
         }}
         onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
       >
         <div class={`${baseClass}__inner`}>
           <slot />

@@ -112,3 +112,16 @@ export function getMenuItemHasChildren(
     menuItem.items.length > 0
   );
 }
+
+/**
+ * Returns `true` if the item is the first child of the parent menu item
+ */
+export function getIsFirstChildMenuItem(
+  menuItem: HTMLUiMenuItemElement,
+): boolean {
+  return (
+    menuItem.parent &&
+    getMenuItemHasChildren(menuItem.parent) &&
+    menuItem.parent.items[0].name === menuItem.name
+  );
+}
