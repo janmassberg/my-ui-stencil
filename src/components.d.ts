@@ -5,73 +5,104 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { IconName } from "./components/icon/types";
 export namespace Components {
-    interface MyUiButton {
-        /**
-          * Indicates if the button is disabled
-         */
-        "disabled": boolean;
-        /**
-          * Variant of the button
-         */
-        "kind": "default" | "primary" | "secondary";
-        /**
-          * Label text of the button
-         */
-        "label": string;
-        /**
-          * Size of the button
-         */
-        "size": "s" | "m" | "l";
-        /**
-          * Type attribute of the button
-         */
-        "type": "button" | "submit" | "reset";
-    }
+  interface UiButton {
+    /**
+     * Indicates if the button is disabled
+     */
+    disabled: boolean;
+    /**
+     * Variant of the button
+     */
+    kind: "default" | "primary" | "secondary";
+    /**
+     * Label text of the button
+     */
+    label: string;
+    /**
+     * Size of the button
+     */
+    size: "s" | "m" | "l";
+    /**
+     * Type attribute of the button
+     */
+    type: "button" | "submit" | "reset";
+  }
+  interface UiIcon {
+    /**
+     * Name of the icon to use
+     */
+    name?: IconName | string;
+    /**
+     * Path to a SVG file
+     */
+    src?: string;
+  }
 }
 declare global {
-    interface HTMLMyUiButtonElement extends Components.MyUiButton, HTMLStencilElement {
-    }
-    var HTMLMyUiButtonElement: {
-        prototype: HTMLMyUiButtonElement;
-        new (): HTMLMyUiButtonElement;
-    };
-    interface HTMLElementTagNameMap {
-        "my-ui-button": HTMLMyUiButtonElement;
-    }
+  interface HTMLUiButtonElement
+    extends Components.UiButton,
+      HTMLStencilElement {}
+  var HTMLUiButtonElement: {
+    prototype: HTMLUiButtonElement;
+    new (): HTMLUiButtonElement;
+  };
+  interface HTMLUiIconElement extends Components.UiIcon, HTMLStencilElement {}
+  var HTMLUiIconElement: {
+    prototype: HTMLUiIconElement;
+    new (): HTMLUiIconElement;
+  };
+  interface HTMLElementTagNameMap {
+    "ui-button": HTMLUiButtonElement;
+    "ui-icon": HTMLUiIconElement;
+  }
 }
 declare namespace LocalJSX {
-    interface MyUiButton {
-        /**
-          * Indicates if the button is disabled
-         */
-        "disabled"?: boolean;
-        /**
-          * Variant of the button
-         */
-        "kind"?: "default" | "primary" | "secondary";
-        /**
-          * Label text of the button
-         */
-        "label"?: string;
-        /**
-          * Size of the button
-         */
-        "size"?: "s" | "m" | "l";
-        /**
-          * Type attribute of the button
-         */
-        "type"?: "button" | "submit" | "reset";
-    }
-    interface IntrinsicElements {
-        "my-ui-button": MyUiButton;
-    }
+  interface UiButton {
+    /**
+     * Indicates if the button is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Variant of the button
+     */
+    kind?: "default" | "primary" | "secondary";
+    /**
+     * Label text of the button
+     */
+    label?: string;
+    /**
+     * Size of the button
+     */
+    size?: "s" | "m" | "l";
+    /**
+     * Type attribute of the button
+     */
+    type?: "button" | "submit" | "reset";
+  }
+  interface UiIcon {
+    /**
+     * Name of the icon to use
+     */
+    name?: IconName | string;
+    /**
+     * Path to a SVG file
+     */
+    src?: string;
+  }
+  interface IntrinsicElements {
+    "ui-button": UiButton;
+    "ui-icon": UiIcon;
+  }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
-    export namespace JSX {
-        interface IntrinsicElements {
-            "my-ui-button": LocalJSX.MyUiButton & JSXBase.HTMLAttributes<HTMLMyUiButtonElement>;
-        }
+  export namespace JSX {
+    interface IntrinsicElements {
+      "ui-button": LocalJSX.UiButton &
+        JSXBase.HTMLAttributes<HTMLUiButtonElement>;
+      "ui-icon": LocalJSX.UiIcon & JSXBase.HTMLAttributes<HTMLUiIconElement>;
     }
+  }
 }
