@@ -1,9 +1,9 @@
 import { Component, Prop, Host, h } from "@stencil/core";
 
-const baseClass = "my-ui-button";
+const baseClass = "ui-button";
 
 @Component({
-  tag: "my-ui-button",
+  tag: "ui-button",
   styleUrl: "button.scss",
   shadow: false,
 })

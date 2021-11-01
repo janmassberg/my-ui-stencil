@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui-button should set class names and aria-label attribute correctly 1`] = `
+<ui-button class="hydrated ui-button ui-button--primary ui-button--size-m" kind="primary" label="Label">
+  <!---->
+  <button aria-label="Label" class="ui-button__button">
+    Content
+  </button>
+</ui-button>
+`;
