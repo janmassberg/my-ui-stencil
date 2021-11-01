@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h } from "@stencil/core";
+import { Component, ComponentInterface, Prop, Host, h } from "@stencil/core";
 
 const baseClass = "ui-button";
 
@@ -7,7 +7,7 @@ const baseClass = "ui-button";
   styleUrl: "button.scss",
   shadow: false,
 })
-export class UiButton {
+export class UiButton implements ComponentInterface {
   /** Indicates if the button is disabled */
   @Prop() disabled: boolean;
 
