@@ -34,6 +34,7 @@
 
 ### Used by
 
+ - [ui-menu](..)
  - [ui-menu-item](.)
 
 ### Depends on
@@ -45,6 +46,7 @@
 ```mermaid
 graph TD;
   ui-menu-item --> ui-menu-item
+  ui-menu --> ui-menu-item
   style ui-menu-item fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
