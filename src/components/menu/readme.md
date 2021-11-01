@@ -33,6 +33,15 @@
 | `"(default)"` | the `menu-item` elements belonging to the menu |
 
 
+## CSS Custom Properties
+
+| Name                           | Description                              |
+| ------------------------------ | ---------------------------------------- |
+| `--ui-menu-bg-color`           | default background color                 |
+| `--ui-menu-bg-color-secondary` | background color for variant `secondary` |
+| `--ui-menu-text-color`         | default text and icon color              |
+
+
 ## Dependencies
 
 ### Depends on
