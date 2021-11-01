@@ -1,5 +1,5 @@
 {
-  "name": "@jmassberg/my-ui-stencil",
+  "name": "@jmassberg/jx-ui-stencil",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -9,7 +9,7 @@
   "types": "dist/custom-elements/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/my-ui/my-ui.esm.js",
+  "unpkg": "dist/jx-ui/jx-ui.esm.js",
   "files": [
     "dist/",
     "loader/",
@@ -21,34 +21,24 @@
     "url": "git+https://github.com/janmassberg/my-ui-stencil.git"
   },
   "scripts": {
-    "start": "stencil build && concurrently npm:stencil-watch npm:start-storybook",
     "clean": "rm -rf dist loader coverage",
-    "build": "npm run clean && npm run stencil-build",
-    "stencil-build": "stencil build --docs",
-    "stencil-dev": "stencil build --dev --watch --serve",
-    "stencil-generate": "stencil generate",
-    "stencil-watch": "stencil build --watch",
-    "start-storybook": "start-storybook --quiet -s ./resources -p 6006",
-    "build-storybook": "build-storybook",
-    "eslint": "eslint src/**/*{.ts,.tsx}",
-    "eslint-fix": "eslint src/**/*{.ts,.tsx} --fix",
-    "prettier": "prettier --check \"./{src/**/*{.scss,.ts,.tsx},stories/**/*{.mdx,.js,.ts},*.js,*.ts,.react/package.json}\"",
-    "prettier-fix": "prettier --write \"./{src/**/*{.scss,.ts,.tsx},stories/**/*{.mdx,.js,.ts},*.js,*.ts,.react/package.json}\"",
-    "lint": "npm run prettier && npm run eslint",
-    "lint-fix": "npm run prettier-fix && npm run eslint-fix",
-    "tslint": "tsc --noEmit",
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test-watch": "stencil test --spec --e2e --watchAll",
-    "test-update": "jest -u",
-    "test-report": "jest --json --outputFile ./jest.report.json --coverage",
-    "release": "npm run clean && npm run build && npm publish --access=public"
+    "generate": "stencil generate",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "eslint-fix": "eslint src/**/*{.ts,.tsx} --fix",
+    "eslint": "eslint src/**/*{.ts,.tsx}",
+    "format": "prettier --write \"./{src/**/*{.scss,.ts,.tsx},stories/**/*{.mdx,.js,.ts},*.js,*.ts}\""
   },
   "dependencies": {
     "@stencil/core": "^2.7.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@stencil/eslint-plugin": "^0.3.1",
+    "@babel/core": "^7.16.0",
+    "@stencil/eslint-plugin": "^0.4.0",
     "@stencil/postcss": "^2.1.0",
     "@stencil/sass": "^1.5.2",
     "@storybook/addon-actions": "^6.3.12",
@@ -56,11 +46,10 @@
     "@storybook/addon-links": "^6.3.12",
     "@storybook/web-components": "^6.3.12",
     "@types/jest": "^26.0.24",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
     "babel-loader": "^8.2.3",
-    "concurrently": "^6.3.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-jest": "^25.2.2",
     "eslint-plugin-react": "^7.26.1",
     "jest": "^26.6.3",
@@ -68,7 +57,7 @@
     "lit-html": "^2.0.1",
     "prettier": "^2.4.1",
     "puppeteer": "^10.0.0",
-    "typescript": "^3.9.10"
+    "typescript": "^4.4.4"
   },
   "license": "MIT"
 }

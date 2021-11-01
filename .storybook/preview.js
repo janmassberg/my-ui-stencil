@@ -1,7 +1,10 @@
-import { defineCustomElements } from '../dist/custom-elements';
-import '../dist/my-ui/my-ui.css';
+import { setCustomElements } from "@storybook/web-components";
+import { defineCustomElements } from "../dist/esm/loader";
+import customElements from "../custom-elements.json";
+import '../dist/jx-ui/jx-ui.css';
 
 defineCustomElements();
+setCustomElements(customElements);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

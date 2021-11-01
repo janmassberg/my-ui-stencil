@@ -1,20 +1,13 @@
 import { Config } from "@stencil/core";
 import { postcss } from "@stencil/postcss";
 import { sass } from "@stencil/sass";
+import { generateCustomElementsJson } from "./stencil.custom-elements-json";
 
 export const config: Config = {
-  namespace: "my-ui",
+  namespace: "jx-ui",
   buildEs5: "prod",
   globalStyle: "src/themes/default.scss",
-  plugins: [
-    postcss(),
-    sass(),
-    /*
-    sass({
-      injectGlobalPaths: ["src/themes/default.scss"],
-    }),
-     */
-  ],
+  plugins: [postcss(), sass()],
   devServer: {
     reloadStrategy: "hmr",
     openBrowser: false,
@@ -26,6 +19,10 @@ export const config: Config = {
     },
     {
       type: "dist-custom-elements-bundle",
+    },
+    {
+      type: "docs-custom",
+      generator: generateCustomElementsJson,
     },
     {
       type: "docs-readme",
