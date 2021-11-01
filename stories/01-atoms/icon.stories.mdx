@@ -4,16 +4,13 @@ import { ifDefined } from "lit-html/directives/if-defined";
 
 export const Template = (args = {}) => {
   const { name } = args;
-  return html`<ui-icon style="width:48px" name=${ifDefined(name)}></ui-icon>`;
+  return html`<ui-icon name=${ifDefined(name)}></ui-icon>`;
 };
 
 <Meta
   title="Atoms/Icon"
   component={`ui-icon`}
   argTypes={{
-    disabled: {
-      control: "boolean",
-    },
     name: {
       control: {
         type: "select",
