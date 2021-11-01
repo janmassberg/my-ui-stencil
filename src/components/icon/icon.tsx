@@ -7,6 +7,7 @@ import {
   getAssetPath,
 } from "@stencil/core";
 import { IconName } from "./types";
+import { loadSvgResource } from "./utils";
 
 @Component({
   tag: "ui-icon",
@@ -46,7 +47,7 @@ export class UiIcon implements ComponentInterface {
   }
 
   private updateSvg(svgUrl: string): void {
-    requestResource(svgUrl)
+    loadSvgResource(svgUrl)
       .then(svgContent => {
         this.el.innerHTML = svgContent;
       })
@@ -63,27 +64,4 @@ export class UiIcon implements ComponentInterface {
   private getSvgUrlForName(): string {
     return `${getAssetPath("assets")}/${this.name}.svg`;
   }
-}
-
-const cachedResources: Record<string, Promise<string>> = {};
-
-async function requestResource(resource: string): Promise<string> {
-  if (cachedResources[resource] !== undefined) {
-    return cachedResources[resource];
-  }
-  cachedResources[resource] = new Promise((resolve, reject) => {
-    fetch(resource)
-      .then(res => {
-        if (res.ok) {
-          res
-            .text()
-            .then(text => resolve(text))
-            .catch(() => reject());
-        } else {
-          reject();
-        }
-      })
-      .catch(() => reject());
-  });
-  return cachedResources[resource];
 }
