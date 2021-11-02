@@ -14,7 +14,7 @@
 | `kind`        | `kind`     | Style variant of the menu                                      | `"primary" \| "secondary"`         | `"primary"` |
 | `name`        | `name`     | Name that identifies the menu                                  | `string`                           | `undefined` |
 | `role`        | `role`     | The `role` attribute of the menu                               | `"menu" \| "menubar" \| "tablist"` | `"menubar"` |
-| `rootElement` | --         | Name that identifies the menu                                  | `HTMLElement`                      | `undefined` |
+| `rootElement` | --         | Name that identifies the menu                                  | `HTMLElement`                      | `null`      |
 | `toggle`      | `toggle`   | If set to `true` the menu items can be deselected when clicked | `boolean`                          | `undefined` |
 | `vertical`    | `vertical` | If set to `true` the menu items are arranged vertically        | `boolean`                          | `false`     |
 
@@ -39,7 +39,7 @@
 | ------------------------------ | ---------------------------------------- |
 | `--ui-menu-bg-color`           | default background color                 |
 | `--ui-menu-bg-color-secondary` | background color for variant `secondary` |
-| `--ui-menu-text-color`         | default text and icon color              |
+| `--ui-menu-color`              | default text and icon color              |
 
 
 ## Dependencies

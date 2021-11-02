@@ -36,7 +36,7 @@ export class Menu implements ComponentInterface {
   @Element() host: HTMLUiMenuElement;
 
   /** Name that identifies the menu */
-  @Prop() rootElement: HTMLElement;
+  @Prop() rootElement: HTMLElement = null;
 
   /** Name that identifies the menu */
   @Prop({ reflect: true }) name: string;
@@ -74,8 +74,9 @@ export class Menu implements ComponentInterface {
     this.updateSelectedItems(this.current);
   }
 
-  /** Find ui-menu elements with same name */
+  /** Find menus with same name */
   private findRelatedMenus = (): HTMLUiMenuElement[] => {
+    console.log("findRelatedMenus", this.rootElement);
     return this.rootElement === null
       ? [this.host]
       : findMenus(this.rootElement, this.name);
@@ -133,8 +134,10 @@ export class Menu implements ComponentInterface {
     }
     item.selected = selected;
     this.selectedItem = selectedItem;
+    console.log("selectedItem", selectedItem, current, selected, item.selected);
     this.findRelatedMenus().forEach(el => {
-      el.current = current;
+      //el.current = current;
+      console.log("findRelatedMenus", el);
     });
   };
 

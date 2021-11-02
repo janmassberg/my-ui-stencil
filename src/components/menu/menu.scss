@@ -1,13 +1,13 @@
 /**
 * @prop --ui-menu-bg-color: default background color
 * @prop --ui-menu-bg-color-secondary: background color for variant `secondary`
-* @prop --ui-menu-text-color: default text and icon color
+* @prop --ui-menu-color: default text and icon color
 */
 ui-menu {
   display: block;
   position: relative;
   background-color: var(--ui-menu-bg-color);
-  color: var(--ui-menu-text-color);
+  color: var(--ui-menu-color);
   font-family: var(--ui-font-family);
 
   .ui-menu__inner {

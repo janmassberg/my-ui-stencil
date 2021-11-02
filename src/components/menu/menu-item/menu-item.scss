@@ -1,13 +1,13 @@
 /**
 * @prop --ui-menu-bg-color-hover: background color when hovered
-* @prop --ui-menu-text-color: default text and icon color
-* @prop --ui-menu-text-color-active: text and icon color when the item is active
-* @prop --ui-menu-text-color-focus: text and icon color when the item has focus
-* @prop --ui-menu-text-color-selected: text and icon color when the item is selected
-* @prop --ui-menu-text-color-disabled: text and icon color when the item is disabled
+* @prop --ui-menu-color: default text and icon color
+* @prop --ui-menu-color-active: text and icon color when the item is active
+* @prop --ui-menu-color-focus: text and icon color when the item has focus
+* @prop --ui-menu-color-selected: text and icon color when the item is selected
+* @prop --ui-menu-color-disabled: text and icon color when the item is disabled
 * @prop --ui-menu-outline-color: outline color
 * @prop --ui-menu-outline-color-focus: outline color when the item has focus
-* @prop --ui-menu-border-width: outline thickness
+* @prop --ui-menu-item-border-width: outline thickness
 * @prop --ui-menu-item-border-radius: border radius of the menu item
 */
 ui-menu-item {
@@ -20,6 +20,7 @@ ui-menu-item {
   outline: 2px solid transparent;
   outline-offset: -2px;
   user-select: none;
+  cursor: pointer;
 
   .ui-menu--vertical &,
   .ui-menu-item__submenu & {
@@ -27,7 +28,7 @@ ui-menu-item {
   }
 
   &[selected] > .ui-menu-item__item {
-    color: var(--ui-menu-text-color-selected);
+    color: var(--ui-menu-color-selected);
   }
 
   &:focus {
@@ -35,11 +36,11 @@ ui-menu-item {
   }
 
   &:focus > .ui-menu-item__item {
-    color: var(--ui-menu-text-color-focus);
+    color: var(--ui-menu-color-focus);
   }
 
   &:active > .ui-menu-item__item {
-    color: var(--ui-menu-text-color-active);
+    color: var(--ui-menu-color-active);
   }
 
   .ui-menu-item__label {
@@ -57,10 +58,11 @@ ui-menu-item {
     flex: 0 0 auto;
     align-items: center;
     justify-content: center;
+    transition: var(--ui-menu-item-transition, none);
 
     &:hover {
       background-color: var(--ui-menu-bg-color-hover);
-      color: var(--ui-menu-text-color-hover);
+      color: var(--ui-menu-color-hover);
     }
 
     .ui-menu--vertical &,

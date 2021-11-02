@@ -35,15 +35,15 @@
 | Name                            | Description                                   |
 | ------------------------------- | --------------------------------------------- |
 | `--ui-menu-bg-color-hover`      | background color when hovered                 |
-| `--ui-menu-border-width`        | outline thickness                             |
+| `--ui-menu-color`               | default text and icon color                   |
+| `--ui-menu-color-active`        | text and icon color when the item is active   |
+| `--ui-menu-color-disabled`      | text and icon color when the item is disabled |
+| `--ui-menu-color-focus`         | text and icon color when the item has focus   |
+| `--ui-menu-color-selected`      | text and icon color when the item is selected |
 | `--ui-menu-item-border-radius`  | border radius of the menu item                |
+| `--ui-menu-item-border-width`   | outline thickness                             |
 | `--ui-menu-outline-color`       | outline color                                 |
 | `--ui-menu-outline-color-focus` | outline color when the item has focus         |
-| `--ui-menu-text-color`          | default text and icon color                   |
-| `--ui-menu-text-color-active`   | text and icon color when the item is active   |
-| `--ui-menu-text-color-disabled` | text and icon color when the item is disabled |
-| `--ui-menu-text-color-focus`    | text and icon color when the item has focus   |
-| `--ui-menu-text-color-selected` | text and icon color when the item is selected |
 
 
 ## Dependencies
