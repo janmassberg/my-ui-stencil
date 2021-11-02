@@ -4,9 +4,6 @@
 * @prop --ui-menu-color-active: text and icon color when the item is active
 * @prop --ui-menu-color-focus: text and icon color when the item has focus
 * @prop --ui-menu-color-selected: text and icon color when the item is selected
-* @prop --ui-menu-color-disabled: text and icon color when the item is disabled
-* @prop --ui-menu-outline-color: outline color
-* @prop --ui-menu-outline-color-focus: outline color when the item has focus
 * @prop --ui-menu-item-border-width: outline thickness
 * @prop --ui-menu-item-border-radius: border radius of the menu item
 * @prop --ui-icon-size: used for the label min-height
@@ -34,68 +31,75 @@ ui-menu-item {
 
   &:focus > .ui-menu-item__item {
     color: var(--ui-menu-color-focus);
-    border-color: var(--ui-menu-outline-color);
+    border-color: var(--ui-menu-color-focus);
   }
 
   &:active > .ui-menu-item__item {
     color: var(--ui-menu-color-active);
   }
 
-  .ui-menu-item__label {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: var(--ui-icon-size, 0);
+  &:not(:last-of-type) {
+    border-bottom: var(--ui-menu-item-border-width) solid
+      var(--ui-menu-item-border-color);
+  }
+}
+
+.ui-menu-item__label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: var(--ui-icon-size, 0);
+  flex: 1 0 auto;
+}
+
+.ui-menu-item__item {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: var(--ui-menu-item-transition, none);
+  border: var(--ui-menu-item-border-width, 0) solid transparent;
+  border-radius: var(--ui-menu-item-border-radius, 0);
+  padding: var(--ui-button-padding-vertical, 0.5em)
+    var(--ui-button-padding-horizontal, 1em);
+
+  &:hover {
+    background-color: var(--ui-menu-bg-color-hover);
+    color: var(--ui-menu-color-hover);
+  }
+
+  .ui-menu--vertical &,
+  .ui-menu-item__submenu & {
     flex: 1 0 auto;
+    justify-content: stretch;
+  }
+}
+
+.ui-menu-item__submenu {
+  display: none;
+  position: absolute;
+  background-color: var(--ui-menu-bg-color);
+  border: var(--ui-menu-item-border-width) solid
+    var(--ui-menu-item-border-color);
+  box-shadow: var(--ui-menu-panel-shadow, none);
+  z-index: var(--ui-z-index-flyout);
+
+  &--expanded {
+    display: block;
   }
 
-  .ui-menu-item__item {
-    box-sizing: border-box;
-    border: var(--ui-menu-item-border-width, 0) solid
-      var(--ui-menu-item-border-color, 0);
-    border-radius: var(--ui-menu-item-border-radius, 0);
-    position: relative;
-    padding: var(--ui-button-padding-vertical, 0.5em)
-      var(--ui-button-padding-horizontal, 1em);
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    justify-content: center;
-    transition: var(--ui-menu-item-transition, none);
-
-    &:hover {
-      background-color: var(--ui-menu-bg-color-hover);
-      color: var(--ui-menu-color-hover);
-    }
-
-    .ui-menu--vertical &,
-    .ui-menu-item__submenu & {
-      flex: 1 0 auto;
-      justify-content: stretch;
-    }
+  &--below {
+    left: 0;
+    top: 100%;
+    min-width: 240px;
   }
 
-  .ui-menu-item__submenu {
-    display: none;
-    position: absolute;
-    background-color: var(--ui-menu-bg-color-secondary);
-    z-index: var(--ui-z-index-flyout);
-
-    &--expanded {
-      display: block;
-    }
-
-    &--below {
-      left: 0;
-      top: 100%;
-      min-width: 240px;
-    }
-
-    &--aside {
-      width: 100%;
-      left: 100%;
-      top: 0;
-    }
+  &--aside {
+    width: 100%;
+    left: 100%;
+    top: 0;
   }
 }
 

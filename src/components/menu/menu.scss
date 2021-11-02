@@ -6,7 +6,6 @@
 ui-menu {
   display: block;
   position: relative;
-  background-color: var(--ui-menu-bg-color);
   color: var(--ui-menu-color);
   font-family: var(--ui-font-family);
 
@@ -18,23 +17,15 @@ ui-menu {
   }
 }
 
-.ui-menu {
-  &--secondary {
-    background-color: var(--ui-menu-bg-color-secondary);
-  }
+.ui-menu--secondary {
+  background-color: var(--ui-menu-bg-color-secondary);
 }
 
-.ui-menu {
-  &--vertical {
-    .ui-menu__inner {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-    }
-
-    ui-menu-item {
-      justify-content: flex-start;
-    }
+.ui-menu--vertical {
+  .ui-menu__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
   }
 }
