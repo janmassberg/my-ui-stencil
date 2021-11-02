@@ -19,6 +19,7 @@ import {
   findFirstSelectedMenuItem,
   getMenuItemPath,
   getMenuItemHasChildren,
+  getMenuItemRoot,
   getIsFirstChildMenuItem,
 } from "./utils";
 
@@ -71,7 +72,7 @@ export class Menu implements ComponentInterface {
 
   @Watch("current")
   onCurrentChange() {
-    this.updateSelectedItems(this.current);
+    this.updateSelectedItemsRecursive(this.current);
   }
 
   /** Find menus with same name */
@@ -117,7 +118,6 @@ export class Menu implements ComponentInterface {
     }
   };
 
-  /** Internally select or toggle a menu-item */
   private selectItem = (item: HTMLUiMenuItemElement): void => {
     if (!this.toggle && item === this.selectedItem) return;
     const selected = !this.toggle || !item.selected;
@@ -138,8 +138,7 @@ export class Menu implements ComponentInterface {
     });
   };
 
-  /** Set the selected property of the menu items */
-  private updateSelectedItems = (current: string): void => {
+  private updateSelectedItemsRecursive = (current: string): void => {
     const selectedItem = findMenuItemWithName(this.host, current);
     const selectedLevel = selectedItem?.level || 0;
     const selectedPath = getMenuItemPath(selectedItem);
@@ -153,7 +152,6 @@ export class Menu implements ComponentInterface {
     this.selectedItem = selectedItem;
   };
 
-  /** Click event handler */
   private handleClick = event => {
     const item = findMenuItemInEvent(event);
     if (item === null) return;
@@ -166,7 +164,6 @@ export class Menu implements ComponentInterface {
     this.selectItem(item);
   };
 
-  /** Keyboard event handler */
   private handleKeyDown = (event: KeyboardEvent) => {
     const item = findMenuItemInEvent(event);
     if (item === null) return;
@@ -256,7 +253,8 @@ export class Menu implements ComponentInterface {
   }
 
   render() {
-    const { kind, vertical } = this;
+    const { kind, vertical, selectedItem } = this;
+    const selectedRootItem = getMenuItemRoot(selectedItem);
     return (
       <Host
         class={{
@@ -271,6 +269,9 @@ export class Menu implements ComponentInterface {
           <slot />
           {this.renderItems()}
         </div>
+        {selectedRootItem !== null && (
+          <ui-menu-indicator target={selectedRootItem} vertical={vertical} />
+        )}
       </Host>
     );
   }

@@ -34,6 +34,7 @@
 
 | Name                            | Description                                   |
 | ------------------------------- | --------------------------------------------- |
+| `--ui-icon-size`                | used for the label min-height                 |
 | `--ui-menu-bg-color-hover`      | background color when hovered                 |
 | `--ui-menu-color`               | default text and icon color                   |
 | `--ui-menu-color-active`        | text and icon color when the item is active   |

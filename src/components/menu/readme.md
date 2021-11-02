@@ -47,11 +47,13 @@
 ### Depends on
 
 - [ui-menu-item](menu-item)
+- [ui-menu-indicator](menu-indicator)
 
 ### Graph
 ```mermaid
 graph TD;
   ui-menu --> ui-menu-item
+  ui-menu --> ui-menu-indicator
   ui-menu-item --> ui-menu-item
   ui-menu-item --> ui-icon
   style ui-menu fill:#f9f,stroke:#333,stroke-width:4px

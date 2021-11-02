@@ -125,3 +125,15 @@ export function getIsFirstChildMenuItem(
     menuItem.parent.items[0].name === menuItem.name
   );
 }
+
+/**
+ * Returns the root menu item in a nested menu
+ */
+export function getMenuItemRoot(
+  el: HTMLUiMenuItemElement,
+): HTMLUiMenuItemElement {
+  if (el !== null && el.parent !== null) {
+    return getMenuItemRoot(el.parent);
+  }
+  return el;
+}

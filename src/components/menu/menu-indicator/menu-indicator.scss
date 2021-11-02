@@ -1,0 +1,28 @@
+/**
+* @prop --ui-menu-indicator-color: color of the indicator
+* @prop --ui-menu-indicator-size: width/height of the indicator
+* @prop --ui-menu-indicator-transition: duration and speed of the transition
+*/
+ui-menu-indicator {
+  display: block;
+  position: absolute;
+  background-color: var(--ui-menu-indicator-color);
+  transition: transform var(--ui-menu-indicator-transition),
+    width var(--ui-menu-indicator-transition);
+
+  &.ui-menu-indicator--horizontal {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: var(--ui-menu-indicator-size);
+  }
+
+  &.ui-menu-indicator--vertical {
+    top: 0;
+    bottom: auto;
+    left: 0;
+    width: var(--ui-menu-indicator-size);
+    height: 0;
+  }
+}

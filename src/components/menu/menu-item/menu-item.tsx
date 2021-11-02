@@ -109,7 +109,7 @@ export class UiMenuItem implements ComponentInterface {
       selected,
     } = this;
     const hasChildren = Array.isArray(items) && items.length > 0;
-    const expandIcon = level > 0 ? "chevron-right" : "chevron-down";
+    const expandIcon = level > 0 ? "caret-right" : "caret-down";
     const trailingIcon = hasChildren
       ? this.trailingIcon || expandIcon
       : this.trailingIcon;
