@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui-menu should handle mouse and keyboard events correctly 1`] = `
+<ui-menu class="hydrated ui-menu ui-menu--horizontal ui-menu--primary" current="item-3" name="test-menu" role="menubar">
+  <!---->
+  <div class="ui-menu__inner">
+    <ui-menu-item aria-label="Menu Item 1" class="hydrated ui-menu-item" level="0" name="item-1" role="menuitem" tabindex="-1">
+      <!---->
+      <div class="ui-menu-item__item">
+        <span class="ui-menu-item__label">
+          <span class="ui-menu-item__label-slot"></span>
+          <span class="ui-menu-item__label-text">
+            Menu Item 1
+          </span>
+        </span>
+      </div>
+    </ui-menu-item>
+    <ui-menu-item aria-label="Menu Item 2" class="hydrated ui-menu-item" level="0" name="item-2" role="menuitem" tabindex="-1">
+      <!---->
+      <div class="ui-menu-item__item">
+        <span class="ui-menu-item__label">
+          <span class="ui-menu-item__label-slot"></span>
+          <span class="ui-menu-item__label-text">
+            Menu Item 2
+          </span>
+        </span>
+      </div>
+    </ui-menu-item>
+    <ui-menu-item aria-label="Menu Item 3" aria-selected="" class="hydrated ui-menu-item ui-menu-item--selected" level="0" name="item-3" role="menuitem" selected="" tabindex="-1">
+      <!---->
+      <div class="ui-menu-item__item">
+        <span class="ui-menu-item__label">
+          <span class="ui-menu-item__label-slot"></span>
+          <span class="ui-menu-item__label-text">
+            Menu Item 3
+          </span>
+        </span>
+      </div>
+    </ui-menu-item>
+  </div>
+  <ui-menu-indicator class="hydrated ui-menu-indicator ui-menu-indicator--horizontal" style="display: block; transform: translateX(246px); width: 122px;"></ui-menu-indicator>
+</ui-menu>
+`;
+
+exports[`ui-menu should render nested menu items correctly 1`] = `
+<ui-menu class="hydrated ui-menu ui-menu--horizontal ui-menu--primary" current="item-1-1-2" name="test-menu" role="menubar">
+  <!---->
+  <div class="ui-menu__inner">
+    <ui-menu-item aria-label="Menu Item 1" aria-selected="" class="hydrated ui-menu-item ui-menu-item--selected" level="0" name="item-1" role="menuitem" selected="" tabindex="-1">
+      <!---->
+      <div class="ui-menu-item__item">
+        <span class="ui-menu-item__label">
+          <span class="ui-menu-item__label-slot"></span>
+          <span class="ui-menu-item__label-text">
+            Menu Item 1
+          </span>
+        </span>
+        <ui-icon class="hydrated">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+          </svg>
+        </ui-icon>
+      </div>
+      <div class="ui-menu-item__submenu ui-menu-item__submenu--below">
+        <ui-menu-item aria-label="Menu Item 1-1" aria-selected="" class="hydrated ui-menu-item ui-menu-item--selected" level="1" name="item-1-1" role="menuitem" selected="" tabindex="-1">
+          <!---->
+          <div class="ui-menu-item__item">
+            <span class="ui-menu-item__label">
+              <span class="ui-menu-item__label-slot"></span>
+              <span class="ui-menu-item__label-text">
+                Menu Item 1-1
+              </span>
+            </span>
+            <ui-icon class="hydrated">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path>
+              </svg>
+            </ui-icon>
+          </div>
+          <div class="ui-menu-item__submenu ui-menu-item__submenu--aside">
+            <ui-menu-item aria-label="Menu Item 1-1-1" class="hydrated ui-menu-item" level="2" name="item-1-1-1" role="menuitem" tabindex="-1">
+              <!---->
+              <div class="ui-menu-item__item">
+                <span class="ui-menu-item__label">
+                  <span class="ui-menu-item__label-slot"></span>
+                  <span class="ui-menu-item__label-text">
+                    Menu Item 1-1-1
+                  </span>
+                </span>
+              </div>
+            </ui-menu-item>
+            <ui-menu-item aria-label="Menu Item 1-1-2" aria-selected="" class="hydrated ui-menu-item ui-menu-item--selected" level="2" name="item-1-1-2" role="menuitem" selected="" tabindex="-1">
+              <!---->
+              <div class="ui-menu-item__item">
+                <span class="ui-menu-item__label">
+                  <span class="ui-menu-item__label-slot"></span>
+                  <span class="ui-menu-item__label-text">
+                    Menu Item 1-1-2
+                  </span>
+                </span>
+              </div>
+            </ui-menu-item>
+          </div>
+        </ui-menu-item>
+      </div>
+    </ui-menu-item>
+  </div>
+  <ui-menu-indicator class="hydrated ui-menu-indicator ui-menu-indicator--horizontal" style="display: block; transform: translateX(0px); width: 146px;"></ui-menu-indicator>
+</ui-menu>
+`;
