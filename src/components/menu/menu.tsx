@@ -70,13 +70,12 @@ export class Menu implements ComponentInterface {
   @State() selectedItem: HTMLUiMenuItemElement | null = null;
 
   @Watch("current")
-  setCurrent() {
+  onCurrentChange() {
     this.updateSelectedItems(this.current);
   }
 
   /** Find menus with same name */
   private findRelatedMenus = (): HTMLUiMenuElement[] => {
-    console.log("findRelatedMenus", this.rootElement);
     return this.rootElement === null
       ? [this.host]
       : findMenus(this.rootElement, this.name);
@@ -134,17 +133,15 @@ export class Menu implements ComponentInterface {
     }
     item.selected = selected;
     this.selectedItem = selectedItem;
-    console.log("selectedItem", selectedItem, current, selected, item.selected);
     this.findRelatedMenus().forEach(el => {
-      //el.current = current;
-      console.log("findRelatedMenus", el);
+      el.current = current;
     });
   };
 
   /** Set the selected property of the menu items */
   private updateSelectedItems = (current: string): void => {
     const selectedItem = findMenuItemWithName(this.host, current);
-    const selectedLevel = selectedItem?.level || -1;
+    const selectedLevel = selectedItem?.level || 0;
     const selectedPath = getMenuItemPath(selectedItem);
     findMenuItems(this.host).forEach(el => {
       el.selected =
@@ -235,7 +232,7 @@ export class Menu implements ComponentInterface {
 
   componentDidLoad() {
     if (typeof this.current === "string") {
-      this.setCurrent();
+      this.onCurrentChange();
     } else {
       const selectedItem = findFirstSelectedMenuItem(this.host);
       this.selectedItem = selectedItem;
