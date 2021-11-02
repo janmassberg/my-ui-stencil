@@ -152,16 +152,26 @@ export class Menu implements ComponentInterface {
     this.selectedItem = selectedItem;
   };
 
-  private handleClick = event => {
+  private collapsOtherItemsIfExpanded = (expandedItem: HTMLUiMenuItemElement) => {
+    if (expandedItem === null || !expandedItem.expanded) return;
+    findMenuItems(this.host, `[level="${expandedItem.level}"]`).forEach((item) => {
+      if (item !== expandedItem) {
+        item.expanded = false;
+      }
+    });
+  };
+
+  private handleClick = (event: MouseEvent|TouchEvent) => {
     const item = findMenuItemInEvent(event);
     if (item === null) return;
     if (getMenuItemHasChildren(item)) {
       event.preventDefault();
       event.stopPropagation();
       item.expanded = !item.expanded;
-      return;
+      this.collapsOtherItemsIfExpanded(item);
+    } else {
+      this.selectItem(item);
     }
-    this.selectItem(item);
   };
 
   private handleKeyDown = (event: KeyboardEvent) => {
@@ -174,6 +184,7 @@ export class Menu implements ComponentInterface {
         event.preventDefault();
         if (hasChildren) {
           item.expanded = !item.expanded;
+          this.collapsOtherItemsIfExpanded(item);
         } else {
           this.selectItem(item);
         }
