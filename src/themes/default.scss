@@ -13,6 +13,12 @@
   --ui-color-disabled: #c2c2c2;
   --ui-color-focus: var(--ui-color-primary);
 
+  // Dimensions
+  --ui-control-border-size: 1px;
+  --ui-control-border-radius: 0;
+  --ui-control-padding-vertical: 1em;
+  --ui-control-padding-horizontal: 1em;
+
   // Icon
   --ui-icon-size: 24px;
   --ui-icon-size-sm: 16px;
@@ -20,10 +26,10 @@
   --ui-icon-size-lg: 48px;
 
   // Button
-  --ui-button-padding-vertical: 1em;
-  --ui-button-padding-horizontal: 1em;
-  --ui-button-border-width: 2px;
-  --ui-button-border-radius: 4px;
+  --ui-button-padding-horizontal: var(--ui-control-padding-horizontal);
+  --ui-button-padding-vertical: var(--ui-control-padding-vertical);
+  --ui-button-border-width: var(--ui-control-border-size);
+  --ui-button-border-radius: var(--ui-control-border-radius);
 
   --ui-button-bg-color: transparent;
   --ui-button-bg-color-hover: var(--ui-color-primary);
@@ -43,10 +49,10 @@
   --ui-button-disabled-color: var(--ui-color-disabled);
 
   // Menu
-  --ui-menu-item-padding-vertical: 1em;
-  --ui-menu-item-padding-horizontal: 1em;
-  --ui-menu-item-border-width: 2px;
-  --ui-menu-item-border-radius: 0;
+  --ui-menu-item-padding-vertical: var(--ui-control-padding-vertical);
+  --ui-menu-item-padding-horizontal: var(--ui-control-padding-horizontal);
+  --ui-menu-item-border-width: var(--ui-control-border-size);
+  --ui-menu-item-border-radius: var(--ui-control-border-radius);
   --ui-menu-item-border-color: transparent;
   --ui-menu-item-transition: background-color 0.2s ease;
 
