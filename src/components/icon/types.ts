@@ -1,12 +1,8 @@
 export enum IconName {
-  CaretDown = "caret-down",
-  CaretLeft = "caret-left",
-  CaretRight = "caret-right",
-  CaretUp = "caret-up",
+  CARET_DOWN = "caret-down",
+  CARET_LEFT = "caret-left",
+  CARET_RIGHT = "caret-right",
+  CARET_UP = "caret-up",
 }
 
-export enum IconSize {
-  S = "sm",
-  M = "md",
-  L = "lg",
-}
+export type IconSize = "s" | "m" | "l";

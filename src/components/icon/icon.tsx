@@ -24,14 +24,17 @@ export class UiIcon implements ComponentInterface {
   @Prop() name: IconName | string;
 
   /** Size of the icon */
-  @Prop() size?: IconSize | string;
+  @Prop() size?: IconSize;
 
   /** Path to a SVG file */
   @Prop() src?: string;
 
+  /** If set to `true` the icon is flipped horizontally if dir is `rtl` */
+  @Prop() flipRtl?: boolean;
+
   @Watch("name")
   onNameChange(): void {
-    this.updateSvg(this.getSvgUrlForName());
+    this.updateSvg(this.getSvgPathName());
   }
 
   @Watch("src")
@@ -51,6 +54,10 @@ export class UiIcon implements ComponentInterface {
     }
   }
 
+  private clearIcon = (): void => {
+    this.el.innerHTML = "";
+  };
+
   private updateSvg = (svgUrl: string): void => {
     loadSvgResource(svgUrl)
       .then(svgContent => {
@@ -62,11 +69,7 @@ export class UiIcon implements ComponentInterface {
       });
   };
 
-  private clearIcon = (): void => {
-    this.el.innerHTML = "";
-  };
-
-  private getSvgUrlForName = (): string => {
+  private getSvgPathName = (): string => {
     return `${getAssetPath("assets")}/${this.name}.svg`;
   };
 
@@ -74,7 +77,8 @@ export class UiIcon implements ComponentInterface {
     return (
       <Host
         class={{
-          [`ui-icon--${this.size}`]: typeof this.size === "string",
+          [`ui-icon--size-${this.size}`]: typeof this.size === "string",
+          [`ui-icon--flip-rtl`]: this.flipRtl,
         }}
       />
     );

@@ -12,24 +12,24 @@ ui-icon {
     max-height: 100%;
   }
 
-  &.ui-icon--sm {
+  &.ui-icon--size-s {
     width: var(--ui-icon-size-sm);
     height: var(--ui-icon-size-sm);
   }
 
-  &.ui-icon--md {
+  &.ui-icon--size-m {
     width: var(--ui-icon-size-md);
     height: var(--ui-icon-size-md);
   }
 
-  &.ui-icon--lg {
+  &.ui-icon--size-l {
     width: var(--ui-icon-size-lg);
     height: var(--ui-icon-size-lg);
   }
-}
 
-[dir="rtl"] ui-icon[flip-rtl] {
-  svg {
-    transform: scale3d(-1, 1, 1);
+  &.ui-icon--flip-rtl svg {
+    [dir="rtl"] & {
+      transform: scale3d(-1, 1, 1);
+    }
   }
 }

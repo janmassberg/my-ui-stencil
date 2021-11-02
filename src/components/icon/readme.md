@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property | Attribute | Description             | Type     | Default     |
-| -------- | --------- | ----------------------- | -------- | ----------- |
-| `name`   | `name`    | Name of the icon to use | `string` | `undefined` |
-| `size`   | `size`    | Size of the icon        | `string` | `undefined` |
-| `src`    | `src`     | Path to a SVG file      | `string` | `undefined` |
+| Property  | Attribute  | Description                                                       | Type                | Default     |
+| --------- | ---------- | ----------------------------------------------------------------- | ------------------- | ----------- |
+| `flipRtl` | `flip-rtl` | If set to `true` the icon is flipped horizontally if dir is `rtl` | `boolean`           | `undefined` |
+| `name`    | `name`     | Name of the icon to use                                           | `string`            | `undefined` |
+| `size`    | `size`     | Size of the icon                                                  | `"l" \| "m" \| "s"` | `undefined` |
+| `src`     | `src`      | Path to a SVG file                                                | `string`            | `undefined` |
 
 
 ## Dependencies
