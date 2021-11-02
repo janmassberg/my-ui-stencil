@@ -16,7 +16,6 @@ import {
   findMenuItems,
   findMenuItemInEvent,
   findMenuItemWithName,
-  findFirstSelectedMenuItem,
   getMenuItemPath,
   getMenuItemHasChildren,
   getMenuItemRoot,
@@ -76,13 +75,10 @@ export class Menu implements ComponentInterface {
   }
 
   /** Set the focus to the next menu-item on the same level */
-  private focusNextItem = (
-    current: HTMLUiMenuItemElement,
-    dir: number,
-  ): void => {
-    const scope = current.parent || this.rootElement || this.el;
-    const items = findMenuItems(scope, `[level="${current.level}"]`);
-    let index = items.indexOf(current) + dir;
+  private focusNextItem = (item: HTMLUiMenuItemElement, dir: number): void => {
+    const scope = item.parent || this.rootElement || this.el;
+    const items = findMenuItems(scope, `[level="${item.level}"]`);
+    let index = items.indexOf(item) + dir;
     if (index >= items.length) {
       index = 0;
     } else if (index < 0) {
@@ -94,20 +90,17 @@ export class Menu implements ComponentInterface {
   };
 
   /** Set the focus to the next menu-item on parent or child level */
-  private focusNextLevel = (
-    current: HTMLUiMenuItemElement,
-    dir: number,
-  ): void => {
+  private focusNextLevel = (item: HTMLUiMenuItemElement, dir: number): void => {
     if (dir > 0) {
-      const items = findMenuItems(current, `[level="${current.level + 1}"]`);
+      const items = findMenuItems(item, `[level="${item.level + 1}"]`);
       if (items.length > 0) {
         setTimeout(() => {
           items[0].focus();
         });
       }
-    } else if (dir < 0 && current.parent !== null) {
-      current.parent.focus();
-      current.parent.expanded = false;
+    } else if (dir < 0 && item.parent !== null) {
+      item.parent.focus();
+      item.parent.expanded = false;
     }
   };
 
@@ -251,10 +244,6 @@ export class Menu implements ComponentInterface {
   componentDidLoad() {
     if (typeof this.current === "string") {
       this.onCurrentChange();
-    } else {
-      const selectedItem = findFirstSelectedMenuItem(this.el);
-      this.selectedItem = selectedItem;
-      this.current = selectedItem !== null ? selectedItem.name : null;
     }
   }
 

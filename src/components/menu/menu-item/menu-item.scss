@@ -20,11 +20,6 @@ ui-menu-item {
   outline: none;
   cursor: pointer;
 
-  .ui-menu--vertical &,
-  .ui-menu-item__submenu & {
-    flex: 1 0 auto;
-  }
-
   &[selected] > .ui-menu-item__item {
     color: var(--ui-menu-color-selected);
   }
@@ -38,9 +33,14 @@ ui-menu-item {
     color: var(--ui-menu-color-active);
   }
 
-  &:not(:last-of-type) {
-    border-bottom: var(--ui-menu-item-border-width) solid
-      var(--ui-menu-item-border-color);
+  .ui-menu--vertical &,
+  .ui-menu-item__submenu & {
+    flex: 1 0 auto;
+
+    &:not(:last-of-type) {
+      border-bottom: var(--ui-menu-item-border-width) solid
+        var(--ui-menu-item-border-color);
+    }
   }
 }
 
