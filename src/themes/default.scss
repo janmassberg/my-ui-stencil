@@ -18,6 +18,7 @@
   --ui-control-border-radius: 0;
   --ui-control-padding-vertical: 1em;
   --ui-control-padding-horizontal: 1em;
+  --ui-z-index-flyout: 10;
 
   // Icon
   --ui-icon-size: 24px;
@@ -70,4 +71,14 @@
   --ui-menu-indicator-color: var(--ui-menu-color-active);
   --ui-menu-indicator-size: 4px;
   --ui-menu-indicator-transition: 0.15s ease-out;
+}
+
+html {
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+article {
+  display: block;
+  padding: 20px;
 }

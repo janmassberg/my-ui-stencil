@@ -78,16 +78,21 @@ ui-menu-item {
   .ui-menu-item__submenu {
     display: none;
     position: absolute;
-    left: 0;
-    top: 100%;
-    width: 240px;
     background-color: var(--ui-menu-bg-color-secondary);
+    z-index: var(--ui-z-index-flyout);
 
     &--expanded {
       display: block;
     }
 
-    &--vertical {
+    &--below {
+      left: 0;
+      top: 100%;
+      min-width: 240px;
+    }
+
+    &--aside {
+      width: 100%;
       left: 100%;
       top: 0;
     }

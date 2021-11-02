@@ -34,7 +34,7 @@ const baseClass = "ui-menu";
   shadow: false,
 })
 export class Menu implements ComponentInterface {
-  @Element() host: HTMLUiMenuElement;
+  @Element() el: HTMLUiMenuElement;
 
   /** Name that identifies the menu */
   @Prop() rootElement: HTMLElement = null;
@@ -75,19 +75,12 @@ export class Menu implements ComponentInterface {
     this.updateSelectedItemsRecursive(this.current);
   }
 
-  /** Find menus with same name */
-  private findRelatedMenus = (): HTMLUiMenuElement[] => {
-    return this.rootElement === null
-      ? [this.host]
-      : findMenus(this.rootElement, this.name);
-  };
-
   /** Set the focus to the next menu-item on the same level */
   private focusNextItem = (
     current: HTMLUiMenuItemElement,
     dir: number,
   ): void => {
-    const scope = current.parent || this.rootElement || this.host;
+    const scope = current.parent || this.rootElement || this.el;
     const items = findMenuItems(scope, `[level="${current.level}"]`);
     let index = items.indexOf(current) + dir;
     if (index >= items.length) {
@@ -118,6 +111,12 @@ export class Menu implements ComponentInterface {
     }
   };
 
+  private findRelatedMenus = (): HTMLUiMenuElement[] => {
+    return this.rootElement === null
+      ? [this.el]
+      : findMenus(this.rootElement, this.name);
+  };
+
   private selectItem = (item: HTMLUiMenuItemElement): void => {
     if (!this.toggle && item === this.selectedItem) return;
     const selected = !this.toggle || !item.selected;
@@ -139,10 +138,10 @@ export class Menu implements ComponentInterface {
   };
 
   private updateSelectedItemsRecursive = (current: string): void => {
-    const selectedItem = findMenuItemWithName(this.host, current);
+    const selectedItem = findMenuItemWithName(this.el, current);
     const selectedLevel = selectedItem?.level || 0;
     const selectedPath = getMenuItemPath(selectedItem);
-    findMenuItems(this.host).forEach(el => {
+    findMenuItems(this.el).forEach(el => {
       el.selected =
         typeof current === "string" &&
         el.level <= selectedLevel &&
@@ -152,16 +151,27 @@ export class Menu implements ComponentInterface {
     this.selectedItem = selectedItem;
   };
 
-  private collapsOtherItemsIfExpanded = (expandedItem: HTMLUiMenuItemElement) => {
-    if (expandedItem === null || !expandedItem.expanded) return;
-    findMenuItems(this.host, `[level="${expandedItem.level}"]`).forEach((item) => {
+  private collapsOtherItemsIfExpanded = (
+    expandedItem: HTMLUiMenuItemElement,
+  ) => {
+    if (expandedItem === null || !expandedItem.expanded) {
+      return;
+    }
+    findMenus(document.body).forEach(menu => {
+      if (menu !== this.el) {
+        findMenuItems(menu, `[level="0"]`).forEach(item => {
+          item.expanded = false;
+        });
+      }
+    });
+    findMenuItems(this.el, `[level="${expandedItem.level}"]`).forEach(item => {
       if (item !== expandedItem) {
         item.expanded = false;
       }
     });
   };
 
-  private handleClick = (event: MouseEvent|TouchEvent) => {
+  private handleClick = (event: MouseEvent | TouchEvent) => {
     const item = findMenuItemInEvent(event);
     if (item === null) return;
     if (getMenuItemHasChildren(item)) {
@@ -242,7 +252,7 @@ export class Menu implements ComponentInterface {
     if (typeof this.current === "string") {
       this.onCurrentChange();
     } else {
-      const selectedItem = findFirstSelectedMenuItem(this.host);
+      const selectedItem = findFirstSelectedMenuItem(this.el);
       this.selectedItem = selectedItem;
       this.current = selectedItem !== null ? selectedItem.name : null;
     }
@@ -271,6 +281,7 @@ export class Menu implements ComponentInterface {
         class={{
           [baseClass]: true,
           [`${baseClass}--${kind}`]: kind !== undefined,
+          [`${baseClass}--horizontal`]: vertical !== true,
           [`${baseClass}--vertical`]: vertical === true,
         }}
         onClick={this.handleClick}

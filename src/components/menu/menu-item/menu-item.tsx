@@ -21,7 +21,9 @@ const baseClass = "ui-menu-item";
   shadow: false,
 })
 export class UiMenuItem implements ComponentInterface {
-  @Element() host: HTMLUiMenuItemElement;
+  @Element() el: HTMLUiMenuItemElement;
+
+  private menuElement: HTMLUiMenuElement = null;
 
   /** Name that must be unique in the menu scope identifies the menu-item */
   @Prop({ reflect: true }) name: string;
@@ -62,22 +64,20 @@ export class UiMenuItem implements ComponentInterface {
   /** Update menu items */
   @Watch("expanded")
   setExpanded() {
-    const { expanded, parent, level } = this;
-    if (!expanded) {
-      findMenuItems(this.host).forEach(el => {
-        el.expanded = false;
-      });
-      return;
+    if (!this.expanded) {
+      this.collapseChildren();
     }
-    if (parent === null) {
-      return;
-    }
-    findMenuItems(parent, `[level="${level}"]`).forEach(el => {
-      if (el !== this.host) {
-        el.expanded = false;
-      }
-    });
   }
+
+  componentWillLoad() {
+    this.menuElement = this.el.closest<HTMLUiMenuElement>("ui-menu");
+  }
+
+  private collapseChildren = () => {
+    findMenuItems(this.el).forEach(el => {
+      el.expanded = false;
+    });
+  };
 
   private renderItems() {
     const { items, level } = this;
@@ -92,7 +92,7 @@ export class UiMenuItem implements ComponentInterface {
         label={item.label}
         level={level + 1}
         items={item.items}
-        parent={this.host}
+        parent={this.el}
       />
     ));
   }
@@ -109,7 +109,8 @@ export class UiMenuItem implements ComponentInterface {
       selected,
     } = this;
     const hasChildren = Array.isArray(items) && items.length > 0;
-    const expandIcon = level > 0 ? "caret-right" : "caret-down";
+    const submenuBelow = level === 0 && this.menuElement?.vertical !== true;
+    const expandIcon = submenuBelow ? "caret-down" : "caret-right";
     const trailingIcon = hasChildren
       ? this.trailingIcon || expandIcon
       : this.trailingIcon;
@@ -140,7 +141,8 @@ export class UiMenuItem implements ComponentInterface {
           <div
             class={{
               [`${baseClass}__submenu`]: true,
-              [`${baseClass}__submenu--vertical`]: level > 0,
+              [`${baseClass}__submenu--aside`]: !submenuBelow,
+              [`${baseClass}__submenu--below`]: submenuBelow,
               [`${baseClass}__submenu--expanded`]: expanded,
             }}
           >

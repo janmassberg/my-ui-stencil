@@ -4,6 +4,7 @@ ui-icon {
   vertical-align: middle;
   width: var(--ui-icon-size, 24px);
   height: var(--ui-icon-size, 24px);
+  flex: 0 0 auto;
 
   svg {
     width: 100%;
