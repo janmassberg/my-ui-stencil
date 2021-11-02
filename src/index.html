@@ -6,8 +6,45 @@
     <title>UI Webcomponents</title>
     <script type="module" src="/build/jx-ui.esm.js"></script>
     <script nomodule src="/build/jx-ui.js"></script>
+    <link rel="stylesheet" href="/build/jx-ui.css"/>
   </head>
   <body>
-    <ui-button kind="primary">Primary Button</ui-button>
+    <div>
+      <ui-button kind="primary">Primary Button</ui-button>
+    </div>
+    <div>
+      <ui-menu name="menu-1">
+        <ui-menu-item name="item-1">Menu Item 1</ui-menu-item>
+        <ui-menu-item name="item-1">Menu Item 2</ui-menu-item>
+        <ui-menu-item name="item-1">Menu Item 3</ui-menu-item>
+      </ui-menu>
+    </div>
+  <script>
+    document.querySelector("ui-menu").items = [
+      {
+        name: "item-1",
+        label: "Menu Item 1",
+        items: [
+          { name: "item-1-1", label: "Menu Item 1-1" },
+          { name: "item-1-2", label: "Menu Item 1-2" },
+        ],
+      },
+      {
+        name: "item-2",
+        label: "Menu Item 2",
+        items: [
+          { name: "item-2-1", label: "Menu Item 2-1" },
+          {
+            name: "item-2-2",
+            label: "Menu Item 2-2",
+            items: [
+              { name: "item-2-2-1", label: "Menu Item 2-2-1" },
+              { name: "item-2-2-2", label: "Menu Item 2-2-2" },
+            ],
+          },
+        ],
+      },
+    ];
+  </script>
   </body>
 </html>
