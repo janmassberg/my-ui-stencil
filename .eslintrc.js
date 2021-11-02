@@ -10,8 +10,6 @@ module.exports = {
   extends: ["eslint:recommended", "plugin:@stencil/recommended"],
   rules: {
     "@stencil/decorators-style": 0,
-    "@stencil/decorators-context": 0,
-    "@stencil/no-unused-watch": 0,
     "@typescript-eslint/no-unused-vars": [
       "error",
       { varsIgnorePattern: "^h$" },
