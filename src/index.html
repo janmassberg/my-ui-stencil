@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
-    <title>UI Webcomponents</title>
-    <script type="module" src="/build/jx-ui.esm.js"></script>
-    <script nomodule src="/build/jx-ui.js"></script>
-    <link rel="stylesheet" href="/build/jx-ui.css"/>
-  </head>
-  <body>
-    <div>
-      <ui-button kind="primary">Primary Button</ui-button>
-    </div>
-    <div>
-      <ui-menu name="menu-1">
-        <ui-menu-item name="item-1">Menu Item 1</ui-menu-item>
-        <ui-menu-item name="item-1">Menu Item 2</ui-menu-item>
-        <ui-menu-item name="item-1">Menu Item 3</ui-menu-item>
-      </ui-menu>
-    </div>
-  <script>
-    document.querySelector("ui-menu").items = [
-      {
-        name: "item-1",
-        label: "Menu Item 1",
-        items: [
-          { name: "item-1-1", label: "Menu Item 1-1" },
-          { name: "item-1-2", label: "Menu Item 1-2" },
-        ],
-      },
-      {
-        name: "item-2",
-        label: "Menu Item 2",
-        items: [
-          { name: "item-2-1", label: "Menu Item 2-1" },
-          {
-            name: "item-2-2",
-            label: "Menu Item 2-2",
-            items: [
-              { name: "item-2-2-1", label: "Menu Item 2-2-1" },
-              { name: "item-2-2-2", label: "Menu Item 2-2-2" },
-            ],
-          },
-        ],
-      },
-    ];
-  </script>
-  </body>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"/>
+  <title>UI Webcomponents</title>
+  <script type="module" src="/build/jx-ui.esm.js"></script>
+  <script nomodule src="/build/jx-ui.js"></script>
+  <link rel="stylesheet" href="/build/jx-ui.css"/>
+</head>
+<body>
+<article>
+  <section>
+    <h2>Button</h2>
+    <ui-button kind="primary">Primary Button</ui-button>
+    <ui-button kind="secondary">Secondary Button</ui-button>
+  </section>
+  <section>
+    <h2>Horizontal Menu</h2>
+    <ui-menu name="menu-1" current="Menu Item 1-1"></ui-menu>
+  </section>
+  <section>
+    <h2>Vertical Menu</h2>
+    <ui-menu name="menu-2" current="Menu Item 1-1" vertical style="width:240px"></ui-menu>
+  </section>
+</article>
+<script>
+  var menuItems = [
+    {
+      name: "item-1",
+      label: "Menu Item 1",
+      items: [
+        { name: "item-1-1", label: "Menu Item 1-1" },
+        { name: "item-1-2", label: "Menu Item 1-2" },
+      ],
+    },
+    {
+      name: "item-2",
+      label: "Menu Item 2",
+      items: [
+        { name: "item-2-1", label: "Menu Item 2-1" },
+        { name: "item-2-2", label: "Menu Item 2-2", },
+        { name: "item-2-3", label: "Menu Item 2-3", },
+      ],
+    },
+  ];
+  var menu1 = document.querySelector("ui-menu[name=menu-1]");
+  var menu2 = document.querySelector("ui-menu[name=menu-2]");
+  menu1.items = menuItems;
+  menu1.current = "item-1-1";
+  menu2.items = menuItems;
+  menu2.current = "item-1-1";
+</script>
+</body>
 </html>
