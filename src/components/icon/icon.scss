@@ -2,14 +2,29 @@ ui-icon {
   display: inline-flex;
   user-select: none;
   vertical-align: middle;
-  width: 24px;
-  height: 24px;
+  width: var(--ui-icon-size, 24px);
+  height: var(--ui-icon-size, 24px);
 
   svg {
     width: 100%;
     height: auto;
     fill: currentColor;
     max-height: 100%;
+  }
+
+  &.ui-icon--sm {
+    width: var(--ui-icon-size-sm);
+    height: var(--ui-icon-size-sm);
+  }
+
+  &.ui-icon--md {
+    width: var(--ui-icon-size-md);
+    height: var(--ui-icon-size-md);
+  }
+
+  &.ui-icon--lg {
+    width: var(--ui-icon-size-lg);
+    height: var(--ui-icon-size-lg);
   }
 }
 

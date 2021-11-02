@@ -31,7 +31,7 @@ ui-button {
     }
 
     &:focus {
-      border-color: var(--ui-button-border-color-focus);
+      border-color: var(--ui-button-outline-color);
     }
 
     &:disabled {

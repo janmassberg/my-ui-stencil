@@ -72,9 +72,11 @@ export class UiIcon implements ComponentInterface {
 
   render() {
     return (
-      <Host class={{
-        [`ui-icon--${this.size}`]: typeof this.size === "string",
-      }}/>
-    )
+      <Host
+        class={{
+          [`ui-icon--${this.size}`]: typeof this.size === "string",
+        }}
+      />
+    );
   }
 }

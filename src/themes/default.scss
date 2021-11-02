@@ -1,44 +1,63 @@
 :root {
   // Text
   --ui-font-family: Arial, Helvetica, sans-serif;
+  --ui-font-size-normal: 1rem;
+  --ui-font-weight-normal: normal;
+
+  // Colors
+  --ui-color-text: #000;
+  --ui-color-primary: #1e90ff;
+  --ui-color-primary-light: #56abff;
+  --ui-color-disabled: #c2c2c2;
+  --ui-color-focus: var(--ui-color-primary);
+
+  // Icon
+  --ui-icon-size: 24px;
+  --ui-icon-size-sm: 16px;
+  --ui-icon-size-md: 24px;
+  --ui-icon-size-lg: 48px;
 
   // Button
-  --ui-button-bg-color: transparent;
-  --ui-button-border-color: #56abff;
-  --ui-button-border-width: 2px;
-  --ui-button-border-radius: 4px;
-  --ui-button-font-size: 1rem;
-  --ui-button-font-weight: normal;
-  --ui-button-text-color: #56abff;
   --ui-button-padding-vertical: 1em;
   --ui-button-padding-horizontal: 1em;
+  --ui-button-border-width: 2px;
+  --ui-button-border-radius: 4px;
+
+  --ui-button-bg-color: transparent;
+  --ui-button-bg-color-hover: var(--ui-color-primary);
+  --ui-button-bg-color-active: var(--ui-color-primary);
+  --ui-button-border-color: var(--ui-color-primary-light);
+  --ui-button-border-color-hover: var(--ui-color-primary);
+  --ui-button-border-color-active: var(--ui-color-primary);
+  --ui-button-outline-color: var(--ui-color-focus);
+  --ui-button-font-size: var(--ui-font-size-normal);
+  --ui-button-font-weight: var(--ui-font-weight-normal);
+  --ui-button-text-color: var(--ui-color-primary-light);
+  --ui-button-text-color-hover: #ffffff;
   --ui-button-transition: background-color 0.2s ease, border-color 0.2s ease,
     color 0.2s ease;
-  --ui-button-bg-color-hover: #1e90ff;
-  --ui-button-border-color-hover: #1e90ff;
-  --ui-button-text-color-hover: #ffffff;
-  --ui-button-bg-color-active: #1e90ff;
-  --ui-button-border-color-active: #1e90ff;
-  --ui-button-border-color-focus: #1e90ff;
 
   --ui-button-disabled-opacity: 1;
-  --ui-button-disabled-color: #c2c2c2;
+  --ui-button-disabled-color: var(--ui-color-disabled);
 
   // Menu
   --ui-menu-item-padding-vertical: 1em;
   --ui-menu-item-padding-horizontal: 1em;
+  --ui-menu-item-border-width: 2px;
   --ui-menu-item-border-radius: 4px;
+  --ui-menu-item-transition: background-color 0.2s ease;
+
   --ui-menu-bg-color: transparent;
-  --ui-menu-bg-color-hover: #1e90ff;
-  --ui-menu-bg-color-secondary: #c2c2c2;
-  --ui-menu-text-color: #000;
-  --ui-menu-text-color-hover: #1e90ff;
-  --ui-menu-text-color-active: #1e90ff;
-  --ui-menu-text-color-focus: #1e90ff;
-  --ui-menu-text-color-selected: #1e90ff;
-  --ui-menu-text-color-disabled: #c2c2c2;
-  --ui-menu-border-width: 2px;
-  --ui-menu-outline-color: var(--ui-menu-text-color-active);
-  --ui-menu-indicator-color: var(--ui-menu-text-color-active);
+  --ui-menu-bg-color-hover: var(--ui-color-primary);
+  --ui-menu-bg-color-secondary: var(--ui-color-disabled);
+  --ui-menu-color: #000;
+  --ui-menu-color-hover: #ffffff;
+  --ui-menu-color-active: var(--ui-color-primary);
+  --ui-menu-color-focus: var(--ui-color-focus);
+  --ui-menu-color-selected: var(--ui-color-primary);
+  --ui-menu-color-disabled: var(--ui-color-disabled);
+  --ui-menu-outline-color: var(--ui-color-focus);
+
+  --ui-menu-indicator-color: var(--ui-menu-color-active);
   --ui-menu-indicator-transition: 0.15s ease-out;
 }
