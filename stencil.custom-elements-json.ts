@@ -63,5 +63,8 @@ export function generateCustomElementsJson(docsData: JsonDocs) {
     fs.mkdirSync("./dist");
   }
 
-  fs.writeFileSync("./custom-elements.json", JSON.stringify(jsonData, null, 2));
+  fs.writeFileSync(
+    "./dist/custom-elements.json",
+    JSON.stringify(jsonData, null, 2),
+  );
 }
