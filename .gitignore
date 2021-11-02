@@ -25,5 +25,6 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 
-# generated files
 custom-elements.json
+# temp folder
+_tmp
