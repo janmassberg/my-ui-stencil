@@ -4,3 +4,9 @@ export enum IconName {
   CaretRight = "caret-right",
   CaretUp = "caret-up",
 }
+
+export enum IconSize {
+  S = "sm",
+  M = "md",
+  L = "lg",
+}

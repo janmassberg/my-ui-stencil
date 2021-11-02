@@ -2,11 +2,13 @@ import {
   Component,
   ComponentInterface,
   Element,
+  h,
+  Host,
   Prop,
   Watch,
   getAssetPath,
 } from "@stencil/core";
-import { IconName } from "./types";
+import { IconName, IconSize } from "./types";
 import { loadSvgResource } from "./utils";
 
 @Component({
@@ -16,29 +18,24 @@ import { loadSvgResource } from "./utils";
   shadow: false,
 })
 export class UiIcon implements ComponentInterface {
-  @Element() el: HTMLElement;
+  @Element() el: HTMLUiIconElement;
 
   /** Name of the icon to use */
-  @Prop() name?: IconName | string;
+  @Prop() name: IconName | string;
+
+  /** Size of the icon */
+  @Prop() size?: IconSize | string;
 
   /** Path to a SVG file */
   @Prop() src?: string;
 
-  public componentDidLoad(): void {
-    if (this.name) {
-      this.onNameChange();
-    } else if (this.src) {
-      this.onSrcChange();
-    }
-  }
-
   @Watch("name")
-  public onNameChange(): void {
+  onNameChange(): void {
     this.updateSvg(this.getSvgUrlForName());
   }
 
   @Watch("src")
-  public onSrcChange(): void {
+  onSrcChange(): void {
     if (this.src && this.src.slice(-4, 4) === ".svg") {
       this.updateSvg(this.src);
     } else {
@@ -46,7 +43,15 @@ export class UiIcon implements ComponentInterface {
     }
   }
 
-  private updateSvg(svgUrl: string): void {
+  componentDidLoad() {
+    if (this.name !== null) {
+      this.onNameChange();
+    } else if (typeof this.src === "string") {
+      this.onSrcChange();
+    }
+  }
+
+  private updateSvg = (svgUrl: string): void => {
     loadSvgResource(svgUrl)
       .then(svgContent => {
         this.el.innerHTML = svgContent;
@@ -55,13 +60,21 @@ export class UiIcon implements ComponentInterface {
         this.clearIcon();
         console.log(error);
       });
-  }
+  };
 
-  private clearIcon(): void {
+  private clearIcon = (): void => {
     this.el.innerHTML = "";
-  }
+  };
 
-  private getSvgUrlForName(): string {
+  private getSvgUrlForName = (): string => {
     return `${getAssetPath("assets")}/${this.name}.svg`;
+  };
+
+  render() {
+    return (
+      <Host class={{
+        [`ui-icon--${this.size}`]: typeof this.size === "string",
+      }}/>
+    )
   }
 }

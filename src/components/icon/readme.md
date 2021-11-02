@@ -10,6 +10,7 @@
 | Property | Attribute | Description             | Type     | Default     |
 | -------- | --------- | ----------------------- | -------- | ----------- |
 | `name`   | `name`    | Name of the icon to use | `string` | `undefined` |
+| `size`   | `size`    | Size of the icon        | `string` | `undefined` |
 | `src`    | `src`     | Path to a SVG file      | `string` | `undefined` |
 
 
