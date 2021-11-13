@@ -13,20 +13,20 @@ const ARROW_SIZE = 20;
 export function getViewportWidth(): number {
   return Math.max(
     window.document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
+    window.innerWidth || 0,
   );
 }
 
 export function getViewportHeight(): number {
   return Math.max(
     window.document.documentElement.clientHeight || 0,
-    window.innerHeight || 0
+    window.innerHeight || 0,
   );
 }
 
 function getPlacementName(
   position: PopoverPlacementPosition,
-  alignment: PopoverPlacementAlignment
+  alignment: PopoverPlacementAlignment,
 ): PopoverPlacementName {
   return alignment === PopoverAlignments.CENTER
     ? (`${position}` as PopoverPlacementName)
@@ -34,7 +34,7 @@ function getPlacementName(
 }
 
 function getPlacementPosition(
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): PopoverPlacementPosition {
   const position = placement.split("-")[0];
   switch (position) {
@@ -50,7 +50,7 @@ function getPlacementPosition(
 }
 
 function getPlacementAlignment(
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): PopoverPlacementAlignment {
   const alignment = placement.split("-")[1];
   switch (alignment) {
@@ -66,7 +66,7 @@ function getPlacementAlignment(
 function getOverlayDimensionsForPlacement(
   hostRect: DOMRect,
   overlayRect: DOMRect,
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): PopoverDimensions {
   return {
     placement,
@@ -80,7 +80,7 @@ function getOverlayDimensionsForPlacement(
 function getOverlayTop(
   hostRect: DOMRect,
   overlayRect: DOMRect,
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): number {
   const position = getPlacementPosition(placement);
   const alignment = getPlacementAlignment(placement);
@@ -94,10 +94,7 @@ function getOverlayTop(
           return hostRect.top + hostRect.height - overlayRect.height;
         case PopoverAlignments.CENTER:
         default:
-          return (
-            hostRect.top +
-            0.5 * (hostRect.height - overlayRect.height)
-          );
+          return hostRect.top + 0.5 * (hostRect.height - overlayRect.height);
       }
     case PopoverPositions.TOP:
       return hostRect.top - overlayRect.height - ARROW_SIZE;
@@ -110,7 +107,7 @@ function getOverlayTop(
 function getOverlayLeft(
   hostRect: DOMRect,
   overlayRect: DOMRect,
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): number {
   const position = getPlacementPosition(placement);
   const alignment = getPlacementAlignment(placement);
@@ -129,10 +126,7 @@ function getOverlayLeft(
           return hostRect.left + hostRect.width - overlayRect.width;
         case PopoverAlignments.CENTER:
         default:
-          return (
-            hostRect.left +
-            0.5 * (hostRect.width - overlayRect.width)
-          );
+          return hostRect.left + 0.5 * (hostRect.width - overlayRect.width);
       }
   }
 }
@@ -147,7 +141,7 @@ function getOverlayLeft(
 export const calculateVerticalPopoverDimensions = (
   hostRect: DOMRect,
   overlayRect: DOMRect,
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): PopoverDimensions => {
   const viewportHeight = getViewportHeight();
   const viewportWidth = getViewportWidth();
@@ -156,14 +150,12 @@ export const calculateVerticalPopoverDimensions = (
   const SAFE_LEFT = VIEWPORT_SAFE_MARGIN;
   const SAFE_RIGHT = viewportWidth - VIEWPORT_SAFE_MARGIN;
 
-  let position: PopoverPlacementPosition = getPlacementPosition(
-    placement
-  );
+  let position: PopoverPlacementPosition = getPlacementPosition(placement);
   let alignment: PopoverPlacementAlignment = getPlacementAlignment(placement);
   let dimensions: PopoverDimensions = getOverlayDimensionsForPlacement(
     hostRect,
     overlayRect,
-    placement
+    placement,
   );
 
   if (position === PopoverPositions.TOP && dimensions.top < SAFE_TOP) {
@@ -189,7 +181,7 @@ export const calculateVerticalPopoverDimensions = (
   return getOverlayDimensionsForPlacement(
     hostRect,
     overlayRect,
-    fixedPlacement
+    fixedPlacement,
   );
 };
 
@@ -203,7 +195,7 @@ export const calculateVerticalPopoverDimensions = (
 export const calculateHorizontalPopoverDimensions = (
   hostRect: DOMRect,
   overlayRect: DOMRect,
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): PopoverDimensions => {
   const viewportWidth = getViewportWidth();
   const viewportHeight = getViewportHeight();
@@ -212,16 +204,14 @@ export const calculateHorizontalPopoverDimensions = (
   const SAFE_LEFT = VIEWPORT_SAFE_MARGIN;
   const SAFE_RIGHT = viewportWidth - VIEWPORT_SAFE_MARGIN;
 
-  let position: PopoverPlacementPosition = getPlacementPosition(
-    placement
-  );
+  let position: PopoverPlacementPosition = getPlacementPosition(placement);
   let alignment: PopoverPlacementAlignment = getPlacementAlignment(placement);
 
   let fixedPlacement: PopoverPlacementName = placement;
   let dimensions: PopoverDimensions = getOverlayDimensionsForPlacement(
     hostRect,
     overlayRect,
-    placement
+    placement,
   );
 
   // 1: left fallback strategy
@@ -239,7 +229,7 @@ export const calculateHorizontalPopoverDimensions = (
     dimensions = getOverlayDimensionsForPlacement(
       hostRect,
       overlayRect,
-      fixedPlacement
+      fixedPlacement,
     );
     position = getPlacementPosition(fixedPlacement);
     alignment = getPlacementAlignment(fixedPlacement);
@@ -260,7 +250,7 @@ export const calculateHorizontalPopoverDimensions = (
     dimensions = getOverlayDimensionsForPlacement(
       hostRect,
       overlayRect,
-      fixedPlacement
+      fixedPlacement,
     );
     position = getPlacementPosition(fixedPlacement);
     alignment = getPlacementAlignment(fixedPlacement);
@@ -280,7 +270,7 @@ export const calculateHorizontalPopoverDimensions = (
   return getOverlayDimensionsForPlacement(
     hostRect,
     overlayRect,
-    fixedPlacement
+    fixedPlacement,
   );
 };
 
@@ -290,7 +280,7 @@ export const calculateHorizontalPopoverDimensions = (
  * @param dimensions
  */
 export const fixPopoverDimensionsHorizontally = (
-  dimensions: PopoverDimensions
+  dimensions: PopoverDimensions,
 ): PopoverDimensions => {
   const viewportWidth = getViewportWidth();
   const SAFE_LEFT = VIEWPORT_SAFE_MARGIN;
@@ -303,7 +293,7 @@ export const fixPopoverDimensionsHorizontally = (
   } else if (fixedDimensions.left + fixedDimensions.width > SAFE_RIGHT) {
     fixedDimensions.left = Math.max(
       SAFE_LEFT,
-      SAFE_RIGHT - fixedDimensions.width
+      SAFE_RIGHT - fixedDimensions.width,
     );
   }
   return fixedDimensions;
@@ -315,7 +305,7 @@ export const fixPopoverDimensionsHorizontally = (
  * @param dimensions
  */
 export const fixPopoverDimensionsVertically = (
-  dimensions: PopoverDimensions
+  dimensions: PopoverDimensions,
 ): PopoverDimensions => {
   const viewportHeight = getViewportHeight();
   const SAFE_TOP = VIEWPORT_SAFE_MARGIN;
@@ -328,7 +318,7 @@ export const fixPopoverDimensionsVertically = (
   } else if (fixedDimensions.top + fixedDimensions.height > SAFE_BOTTOM) {
     fixedDimensions.top = Math.max(
       SAFE_TOP,
-      SAFE_BOTTOM - fixedDimensions.height
+      SAFE_BOTTOM - fixedDimensions.height,
     );
   }
   return fixedDimensions;
@@ -337,27 +327,31 @@ export const fixPopoverDimensionsVertically = (
 export const calculatePopoverDimensions = (
   hostRect: DOMRect,
   overlayRect: DOMRect,
-  placement: PopoverPlacementName
+  placement: PopoverPlacementName,
 ): PopoverDimensions => {
-  let position: PopoverPlacementPosition = getPlacementPosition(
-    placement
-  );
+  let position: PopoverPlacementPosition = getPlacementPosition(placement);
   let dimensions: PopoverDimensions;
   let fixedPlacement: PopoverPlacementName = placement;
-  if (position === PopoverPositions.LEFT || position === PopoverPositions.RIGHT) {
+  if (
+    position === PopoverPositions.LEFT ||
+    position === PopoverPositions.RIGHT
+  ) {
     dimensions = calculateHorizontalPopoverDimensions(
       hostRect,
       overlayRect,
-      placement
+      placement,
     );
     fixedPlacement = dimensions.placement;
     position = getPlacementPosition(fixedPlacement);
   }
-  if (position === PopoverPositions.TOP || position === PopoverPositions.BOTTOM) {
+  if (
+    position === PopoverPositions.TOP ||
+    position === PopoverPositions.BOTTOM
+  ) {
     dimensions = calculateVerticalPopoverDimensions(
       hostRect,
       overlayRect,
-      fixedPlacement
+      fixedPlacement,
     );
   }
   switch (position) {
