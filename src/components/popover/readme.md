@@ -23,7 +23,7 @@
 
 ## Methods
 
-### `hide() => Promise<void>`
+### `close() => Promise<void>`
 
 Close the popover
 
@@ -33,7 +33,7 @@ Type: `Promise<void>`
 
 
 
-### `show() => Promise<void>`
+### `open() => Promise<void>`
 
 Open the popover
 
