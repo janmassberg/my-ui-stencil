@@ -20,10 +20,10 @@ export enum PopoverPositions {
 }
 
 export type PopoverPlacementPosition =
-  | PopoverPositions.BOTTOM
-  | PopoverPositions.LEFT
-  | PopoverPositions.RIGHT
-  | PopoverPositions.TOP;
+  | "bottom"
+  | "left"
+  | "right"
+  | "top";
 
 export enum PopoverAlignments {
   CENTER = "center",
@@ -32,9 +32,9 @@ export enum PopoverAlignments {
 }
 
 export type PopoverPlacementAlignment =
-  | PopoverAlignments.CENTER
-  | PopoverAlignments.END
-  | PopoverAlignments.START;
+  | "center"
+  | "end"
+  | "start";
 
 export interface PopoverDimensions {
   left: number;
