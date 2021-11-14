@@ -147,7 +147,11 @@ export namespace Components {
     /**
      * Close the popover
      */
-    hide: () => Promise<void>;
+    close: () => Promise<void>;
+    /**
+     * Open the popover
+     */
+    open: () => Promise<void>;
     /**
      * Indicates whether the popover should be open or not
      */
@@ -156,10 +160,6 @@ export namespace Components {
      * Placement of the popover
      */
     placement: PopoverPlacementName;
-    /**
-     * Open the popover
-     */
-    show: () => Promise<void>;
     /**
      * Recalculate the optimal popover placemnt
      */
