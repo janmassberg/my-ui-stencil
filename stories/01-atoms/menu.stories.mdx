@@ -73,30 +73,13 @@ export const Template = (args = {}) => {
 
 The basic menu component.
 
-### Primary
+### Horizontal
 
 <Canvas>
   <Story
-    name="Primary"
+    name="Horizontal"
     parameters={{ layout: "fullscreen" }}
     args={{
-      kind: "primary",
-      items: dummyMenuItems,
-      current: dummyMenuItems[0].name,
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-### Secondary
-
-<Canvas>
-  <Story
-    name="Secondary"
-    parameters={{ layout: "fullscreen" }}
-    args={{
-      kind: "secondary",
       items: dummyMenuItems,
       current: dummyMenuItems[0].name,
     }}
