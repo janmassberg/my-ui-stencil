@@ -206,8 +206,11 @@ export class Popover implements ComponentInterface {
   };
 
   private handleDocumentMouseDown = (event: MouseEvent) => {
-    if (!this.hostElement.contains(event.target as HTMLElement)) {
-      requestAnimationFrame(() => this.close());
+    if (
+      this.opened &&
+      !this.hostElement.contains(event.target as HTMLElement)
+    ) {
+      this.close();
     }
   };
 
@@ -242,7 +245,7 @@ export class Popover implements ComponentInterface {
           onClick={this.handleTriggerClick}
           onKeyDown={this.handleTriggerKeyDown}
         >
-          <slot />
+          <slot name="trigger" />
         </div>
         <div
           class={{
@@ -256,8 +259,8 @@ export class Popover implements ComponentInterface {
           }
           style={opened ? undefined : { display: "none" }}
         >
-          <div class={`${baseClass}__overlay-content`}>
-            <slot name="overlay" />
+          <div class={`${baseClass}__panel`}>
+            <slot />
           </div>
         </div>
       </Host>
