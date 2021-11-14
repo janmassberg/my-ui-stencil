@@ -7,7 +7,12 @@ export const config: Config = {
   namespace: "jx-ui",
   buildEs5: "prod",
   globalStyle: "src/themes/default.scss",
-  plugins: [postcss(), sass()],
+  plugins: [
+    postcss(),
+    sass({
+      injectGlobalPaths: ["src/scss/_mixins.scss"],
+    }),
+  ],
   devServer: {
     reloadStrategy: "hmr",
     openBrowser: false,
