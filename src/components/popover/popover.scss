@@ -1,6 +1,14 @@
 ui-popover {
+  display: inline;
+
   .ui-popover__trigger {
-    display: inline;
+    display: inline-block;
+  }
+
+  .ui-popover__panel {
+    display: block;
+    position: relative;
+    max-width: 100%;
   }
 
   .ui-popover__overlay {
